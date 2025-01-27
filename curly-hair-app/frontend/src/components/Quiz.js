@@ -97,6 +97,7 @@ const Quiz = ({ onSubmit }) => {
             <option value="">Select area</option>
             <option value="Shine">Shine</option>
             <option value="Nourish">Nourish</option>
+            <option value="Hydration">Nourish</option>
           </select>
         </div>
         <button
