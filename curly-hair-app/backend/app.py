@@ -3,32 +3,29 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Load the CSV file into a pandas dataframe
-df = pd.read_csv('backend/data/Curly Hair Products - First Iteration.csv')
+# Load the CSV file
+df = pd.read_csv("/Users/laurenlanda/PycharmProjects/CapstoneCurlyProj/curly-hair-app/backend/data/Curly Hair Products - First Iteration.csv")
 
-# Route to filter products
-@app.route('/products', methods=['GET'])
-def get_products():
-    # Get query parameters from the request
-    curl_pattern = request.args.get('curlPattern')
-    hair_type = request.args.get('hairType')
-    vegan = request.args.get('vegan')
-    weight = request.args.get('weight')
+@app.route("/quiz", methods=["POST"])
+def quiz():
+    data = request.json
+    hair_type = data.get("hairType")
+    thickness = data.get("thickness")
+    price_range = data.get("priceRange")
 
-    # Filter products based on query parameters
-    filtered_df = df
+    # Map price range to price thresholds
+    price_map = {"$": 0, "$$": 15, "$$$": 30}
 
-    if curl_pattern:
-        filtered_df = filtered_df[filtered_df['Curl Pattern'].str.contains(curl_pattern, na=False)]
-    if hair_type:
-        filtered_df = filtered_df[filtered_df['Hair Type'].str.contains(hair_type, na=False)]
-    if vegan:
-        filtered_df = filtered_df[filtered_df['Vegan?'] == vegan]
-    if weight:
-        filtered_df = filtered_df[filtered_df['Weight (L,M,H)'] == weight]
+    # Filter products based on quiz data
+    filtered = df[
+        (df["Hair Type"].str.contains(hair_type, na=False)) &
+        (df["Weight (L,M,H)"].str.contains(thickness, na=False)) &
+        (df["Price"] <= price_map[price_range])
+    ]
 
-    # Convert the filtered dataframe to a list of dictionaries and return as JSON
-    return jsonify(filtered_df.to_dict(orient='records'))
+    # Select up to 3 products for the routine
+    recommendations = filtered.head(3).to_dict(orient="records")
+    return jsonify(recommendations)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
