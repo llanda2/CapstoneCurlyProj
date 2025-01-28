@@ -7,8 +7,8 @@ CORS(app)
 
 # Load the CSV file
 df = pd.read_csv(
-    "/Users/laurenlanda/PycharmProjects/CapstoneCurlyProj/curly-hair-app/backend/data/Curly Hair Products - First Iteration.csv")
-
+    "/Users/laurenlanda/PycharmProjects/CapstoneCurlyProj/curly-hair-app/backend/data/Curly Hair Products - First Iteration.csv"
+)
 
 @app.route("/quiz", methods=["POST"])
 def quiz():
@@ -19,24 +19,17 @@ def quiz():
 
     # Map price range to price thresholds
     price_map = {"$": 0, "$$": 15, "$$$": 30}
-    price_threshold = price_map.get(price_range, 30)  # Default to max price
 
     # Filter products based on quiz data
     filtered = df[
-        (df["Hair Type"].str.contains(hair_type, na=False)) &
-        (df["Weight (L,M,H)"].str.contains(thickness, na=False)) &
-        (df["Price"] <= price_threshold)
-        ]
-    # Debug filtered results
-    print(f"Filtered products: {filtered}")
+        (df["Hair Type"].apply(lambda x: hair_type in x.split(", "))) &  # Check for hair type match
+        (df["Weight (L,M,H)"] == thickness) &                          # Check for thickness
+        (df["Price"] <= price_map[price_range])                        # Check for price range
+    ]
 
     # Select up to 3 products for the routine
     recommendations = filtered.head(3).to_dict(orient="records")
-    print(f"Recommendations: {recommendations}")  # Debug recommendations
     return jsonify(recommendations)
-
-
-exit()
 
 if __name__ == "__main__":
     app.run(debug=True)
