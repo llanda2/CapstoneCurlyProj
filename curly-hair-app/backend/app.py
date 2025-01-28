@@ -19,18 +19,24 @@ def quiz():
 
     # Map price range to price thresholds
     price_map = {"$": 0, "$$": 15, "$$$": 30}
+    price_threshold = price_map.get(price_range, 30)  # Default to max price
 
     # Filter products based on quiz data
     filtered = df[
         (df["Hair Type"].str.contains(hair_type, na=False)) &
         (df["Weight (L,M,H)"].str.contains(thickness, na=False)) &
-        (df["Price"] <= price_map[price_range])
+        (df["Price"] <= price_threshold)
         ]
+    # Debug filtered results
+    print(f"Filtered products: {filtered}")
 
     # Select up to 3 products for the routine
     recommendations = filtered.head(3).to_dict(orient="records")
+    print(f"Recommendations: {recommendations}")  # Debug recommendations
     return jsonify(recommendations)
 
+
+exit()
 
 if __name__ == "__main__":
     app.run(debug=True)
