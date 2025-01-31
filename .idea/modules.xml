@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CapstoneCurlyProj.iml" filepath="$PROJECT_DIR$/.idea/CapstoneCurlyProj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/curlssenior/.idea/curlssenior.iml" filepath="$PROJECT_DIR$/curlssenior/.idea/curlssenior.iml" />
     </modules>
   </component>
 </project>
