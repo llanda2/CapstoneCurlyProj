@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Products</title>
+</head>
+<body>
+    <h1>Hair Products</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.name }}</strong><br>
+                Brand: {{ product.brand }}<br>
+                Category: {{ product.category }}<br>
+                Price: ${{ product.price }}<br>
+                Curl Pattern: {{ product.curl_pattern }}<br>
+                Hair Type: {{ product.hair_type }}<br>
+                Vegan: {{ product.vegan }}<br>
+                Weight: {{ product.weight }}<br>
+                Helpful Areas: {{ product.helpful_areas }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
