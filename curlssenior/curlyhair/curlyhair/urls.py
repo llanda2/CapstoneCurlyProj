@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include  # Add 'include' to include app URLs
 from curlyhair import views  # Make sure this is the correct import path
+from django.shortcuts import render
 
 
 urlpatterns = [
