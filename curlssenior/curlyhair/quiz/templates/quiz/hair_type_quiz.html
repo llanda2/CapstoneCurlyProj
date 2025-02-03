@@ -1,15 +1,14 @@
+<!-- templates/quiz/hair_type_quiz.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Type Quiz</title>
 </head>
 <body>
     <h1>Hair Type Quiz</h1>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}  <!-- Render form fields as paragraph elements -->
+        {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
 </body>

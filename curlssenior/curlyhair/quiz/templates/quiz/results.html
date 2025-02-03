@@ -1,0 +1,14 @@
+<!-- templates/quiz/results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results</title>
+</head>
+<body>
+    <h1>Quiz Results</h1>
+    <p>Your Hair Type: {{ hair_type }}</p>
+    <p>Your Curl Pattern: {{ curl_pattern }}</p>
+    <p>Vegan Preference: {% if vegan %}Yes{% else %}No{% endif %}</p>
+    <p>Your Weight Preference: {{ weight }}</p>
+</body>
+</html>
