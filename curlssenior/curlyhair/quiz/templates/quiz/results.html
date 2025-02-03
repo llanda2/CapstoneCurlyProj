@@ -10,5 +10,24 @@
     <p>Your Curl Pattern: {{ curl_pattern }}</p>
     <p>Vegan Preference: {% if vegan %}Yes{% else %}No{% endif %}</p>
     <p>Your Weight Preference: {{ weight }}</p>
+
+    <h2>Recommended Products</h2>
+
+    {% for category, products in categorized_products.items %}
+        <h3>{{ category }}</h3>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>
+                        <strong>{{ product.name }}</strong> - {{ product.brand }}<br>
+                        Price: ${{ product.price }}<br>
+                        {% if product.vegan %}Vegan{% else %}Not Vegan{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products available for this category based on your preferences.</p>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>
