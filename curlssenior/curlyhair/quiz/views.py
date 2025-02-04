@@ -17,42 +17,48 @@ def hair_type_quiz(request):
         form = HairQuizForm(request.POST)
         if form.is_valid():
             # Retrieve the cleaned data from the form
-            hair_type = form.cleaned_data['hair_type']  # e.g., "Thin"
-            curl_pattern = form.cleaned_data['curl_pattern']  # e.g., "2A"
-            vegan = form.cleaned_data['vegan']  # This will be either True or False
-            maintenance_level = form.cleaned_data['maintenance_level']  # e.g., "Low"
+            hair_type = form.cleaned_data['hair_type']  # "Thin", "Medium", "Thick"
+            curl_pattern = form.cleaned_data['curl_pattern']  # "2A", "3B", etc.
+            vegan = form.cleaned_data['vegan']  # True or False
+            maintenance_level = form.cleaned_data['maintenance_level'].lower()  # "low", "medium", "high"
 
-            # Debugging: Print the quiz results to ensure we're capturing data correctly
+            # Debugging: Print quiz results to ensure correct data is captured
             print(f"Quiz Results: Hair Type: {hair_type}, Curl Pattern: {curl_pattern}, Vegan: {vegan}, Maintenance Level: {maintenance_level}")
 
-            # Get all products in the database
-            all_products = HairProduct.objects.all()
-            print(f"Total Products in DB: {all_products.count()}")
+            # Define product types for each maintenance level
+            maintenance_mapping = {
+                "low": ["Shampoo", "Conditioner", "Curl Cream"],
+                "medium": ["Shampoo", "Conditioner", "Leave-In", "Mousse/Foam"],
+                "high": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse/Foam"]
+            }
 
-            # Filtering the products based on quiz results
+            # Get allowed product types for the selected maintenance level
+            allowed_product_types = maintenance_mapping.get(maintenance_level, [])
+
+            # Filter products based on quiz results
             products = HairProduct.objects.filter(
-                hair_type__icontains=hair_type,  # Match hair type (using 'icontains' for case-insensitive)
-                curl_pattern__icontains=curl_pattern,  # Match curl pattern (using 'icontains' for case-insensitive)
-                vegan=vegan  # Only return products that match the vegan preference (True or False)
+                hair_type__icontains=hair_type,  # Match hair type
+                curl_pattern__icontains=curl_pattern,  # Match curl pattern
+                vegan=vegan,  # Match vegan preference
+                category__in=allowed_product_types  # Match maintenance-level product types
             )
 
-            # Debugging: Print the filtered products count and their details
+            # Debugging: Print filtered products count
             print(f"Filtered Products Count: {products.count()}")
             for product in products:
-                print(f"Filtered Product: {product.name} - Hair Type: {product.hair_type}, Curl Pattern: {product.curl_pattern}, Vegan: {product.vegan}")
+                print(f"Filtered Product: {product.name} - {product.category} (Hair Type: {product.hair_type}, Curl Pattern: {product.curl_pattern}, Vegan: {product.vegan})")
 
-            # Organizing products by category (e.g., Shampoo, Conditioner, etc.)
-            categories = ['Shampoo', 'Conditioner', 'Leave-in', 'Curl Cream', 'Gel', 'Mousse']
-            categorized_products = {category: [] for category in categories}
+            # Organizing products by category (Shampoo, Conditioner, etc.)
+            categorized_products = {category: [] for category in allowed_product_types}
 
-            # Sort the products into their respective categories
             for product in products:
-                if product.category in categories:
+                if product.category in allowed_product_types:
                     categorized_products[product.category].append(product)
 
             # Render the results template with categorized products
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
+                'maintenance_level': maintenance_level
             })
 
     else:

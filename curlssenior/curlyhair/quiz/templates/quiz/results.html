@@ -1,23 +1,14 @@
+<h2>Recommended Hair Care Routine ({{ maintenance_level|capfirst }} Maintenance)</h2>
 
-
-{% block content %}
-    <h2>Quiz Results</h2>
-    <p>Your Hair Type: {{ hair_type }}</p>
-    <p>Your Curl Pattern: {{ curl_pattern }}</p>
-    <p>Your Vegan Preference: {{ vegan }}</p>
-    <p>Your Maintenance Level: {{ maintenance_level }}</p>
-
-    <h3>Recommended Products</h3>
-    {% for category, products in categorized_products.items %}
-        <h4>{{ category }}</h4>
-        {% if products %}
-            <ul>
-                {% for product in products %}
-                    <li>{{ product.name }} - {{ product.hair_type }} - {{ product.vegan }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No products available for this category based on your preferences.</p>
-        {% endif %}
-    {% endfor %}
-{% endblock %}
+{% for category, products in categorized_products.items %}
+    <h3>{{ category }}</h3>
+    {% if products %}
+        <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.brand }} (Vegan: {{ product.vegan }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No {{ category }} products found for your hair type and curl pattern.</p>
+    {% endif %}
+{% endfor %}
