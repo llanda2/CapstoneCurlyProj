@@ -1,8 +1,23 @@
-<h1>All Products</h1>
-<ul>
-    {% for product in products %}
-        <li>{{ product.name }} - {{ product.category }} (Hair Type: {{ product.hair_type }}, Vegan: {{ product.vegan }})</li>
-    {% empty %}
-        <li>No products found.</li>
+
+
+{% block content %}
+    <h2>Quiz Results</h2>
+    <p>Your Hair Type: {{ hair_type }}</p>
+    <p>Your Curl Pattern: {{ curl_pattern }}</p>
+    <p>Your Vegan Preference: {{ vegan }}</p>
+    <p>Your Maintenance Level: {{ maintenance_level }}</p>
+
+    <h3>Recommended Products</h3>
+    {% for category, products in categorized_products.items %}
+        <h4>{{ category }}</h4>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>{{ product.name }} - {{ product.hair_type }} - {{ product.vegan }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products available for this category based on your preferences.</p>
+        {% endif %}
     {% endfor %}
-</ul>
+{% endblock %}
