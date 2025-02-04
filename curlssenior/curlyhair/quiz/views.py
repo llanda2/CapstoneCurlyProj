@@ -9,72 +9,57 @@ def home(request):
     return render(request, 'quiz/home.html')  # You can render a template here
 
 
+from django.shortcuts import render
+from .forms import HairQuizForm
+
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
         if form.is_valid():
-            hair_type = form.cleaned_data['hair_type']
-            vegan = form.cleaned_data['vegan']
-            maintenance_level = form.cleaned_data['maintenance_level']
+            # Retrieve the cleaned data from the form
+            hair_type = form.cleaned_data['hair_type']  # e.g., "Thin"
+            curl_pattern = form.cleaned_data['curl_pattern']  # e.g., "2A"
+            vegan = form.cleaned_data['vegan']  # This will be either True or False
+            maintenance_level = form.cleaned_data['maintenance_level']  # e.g., "Low"
 
-            # Debugging: Print quiz results
-            print(f"Quiz Results: Hair Type: {hair_type}, Vegan: {vegan}, Maintenance Level: {maintenance_level}")
+            # Debugging: Print the quiz results to ensure we're capturing data correctly
+            print(f"Quiz Results: Hair Type: {hair_type}, Curl Pattern: {curl_pattern}, Vegan: {vegan}, Maintenance Level: {maintenance_level}")
 
-            # Get all products and print for debugging
+            # Get all products in the database
             all_products = HairProduct.objects.all()
             print(f"Total Products in DB: {all_products.count()}")
 
-            for product in all_products:
-                print(f"{product.name} | Hair Type: {product.hair_type} | Vegan: {product.vegan} | Category: {product.category}")
-
-            # Convert vegan to a boolean if needed
-            if isinstance(vegan, str):
-                vegan = vegan.lower() == 'true'
-
-            # Filtering logic with contains for hair type
+            # Filtering the products based on quiz results
             products = HairProduct.objects.filter(
-                hair_type__icontains=hair_type,
-                vegan=vegan
+                hair_type__icontains=hair_type,  # Match hair type (using 'icontains' for case-insensitive)
+                curl_pattern__icontains=curl_pattern,  # Match curl pattern (using 'icontains' for case-insensitive)
+                vegan=vegan  # Only return products that match the vegan preference (True or False)
             )
 
-            # Debugging: Print filtered products
+            # Debugging: Print the filtered products count and their details
             print(f"Filtered Products Count: {products.count()}")
             for product in products:
-                print(f"Filtered Product: {product.name}")
+                print(f"Filtered Product: {product.name} - Hair Type: {product.hair_type}, Curl Pattern: {product.curl_pattern}, Vegan: {product.vegan}")
 
-            # Define categories
+            # Organizing products by category (e.g., Shampoo, Conditioner, etc.)
             categories = ['Shampoo', 'Conditioner', 'Leave-in', 'Curl Cream', 'Gel', 'Mousse']
             categorized_products = {category: [] for category in categories}
 
-            # Group products by category
+            # Sort the products into their respective categories
             for product in products:
                 if product.category in categories:
                     categorized_products[product.category].append(product)
 
-            # Maintenance Level determines the routine steps:
-            routine_steps = {
-                "Low": 3,    # 3-step routine (Shampoo, Conditioner, Leave-in)
-                "Medium": 4, # 4-step routine (Shampoo, Conditioner, Leave-in, Curl Cream)
-                "High": 5    # 5-step routine (Shampoo, Conditioner, Leave-in, Curl Cream, Gel)
-            }
-
-            # Select only the number of products needed for the routine
-            selected_products = {}
-            step_count = routine_steps.get(maintenance_level, 3)
-
-            # Ensure we only return the necessary steps
-            required_categories = categories[:step_count]  # Get only the needed categories
-            for category in required_categories:
-                if categorized_products[category]:  # Ensure there's at least one product
-                    selected_products[category] = categorized_products[category][0]  # Pick the first matching product
-
+            # Render the results template with categorized products
             return render(request, 'quiz/results.html', {
-                'selected_products': selected_products,
+                'categorized_products': categorized_products,
             })
 
     else:
+        # If the form is not submitted yet, initialize the empty form
         form = HairQuizForm()
 
+    # Render the quiz page with the form
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
 
 def quiz(request):

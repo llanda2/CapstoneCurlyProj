@@ -1,33 +1,8 @@
-<!-- templates/quiz/results.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Quiz Results</title>
-</head>
-<body>
-    <h1>Quiz Results</h1>
-    <p>Your Hair Type: {{ hair_type }}</p>
-    <p>Your Curl Pattern: {{ curl_pattern }}</p>
-    <p>Vegan Preference: {% if vegan %}Yes{% else %}No{% endif %}</p>
-    <p>Your Weight Preference: {{ weight }}</p>
-
-    <h2>Recommended Products</h2>
-
-    {% for category, products in categorized_products.items %}
-        <h3>{{ category }}</h3>
-        {% if products %}
-            <ul>
-                {% for product in products %}
-                    <li>
-                        <strong>{{ product.name }}</strong> - {{ product.brand }}<br>
-                        Price: ${{ product.price }}<br>
-                        {% if product.vegan %}Vegan{% else %}Not Vegan{% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No products available for this category based on your preferences.</p>
-        {% endif %}
+<h1>All Products</h1>
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} - {{ product.category }} (Hair Type: {{ product.hair_type }}, Vegan: {{ product.vegan }})</li>
+    {% empty %}
+        <li>No products found.</li>
     {% endfor %}
-</body>
-</html>
+</ul>

@@ -2,6 +2,7 @@
 from django.db import models
 
 
+
 class HairProduct(models.Model):
     brand = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
