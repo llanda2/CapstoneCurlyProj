@@ -12,61 +12,64 @@ def home(request):
 from django.shortcuts import render
 from .forms import HairQuizForm
 
+from django.shortcuts import render
+from .forms import HairQuizForm
+from .models import HairProduct
+
+
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
         if form.is_valid():
-            # Retrieve the cleaned data from the form
-            hair_type = form.cleaned_data['hair_type']  # "Thin", "Medium", "Thick"
-            curl_pattern = form.cleaned_data['curl_pattern']  # "2A", "3B", etc.
-            vegan = form.cleaned_data['vegan']  # True or False
-            maintenance_level = form.cleaned_data['maintenance_level'].lower()  # "low", "medium", "high"
+            # Retrieve form data
+            hair_type = form.cleaned_data['hair_type']
+            curl_pattern = form.cleaned_data['curl_pattern']
+            vegan = form.cleaned_data['vegan']
+            maintenance_level = form.cleaned_data['maintenance_level']
+            price_range = form.cleaned_data['price_range']  # "$", "$$", or "$$$"
 
-            # Debugging: Print quiz results to ensure correct data is captured
-            print(f"Quiz Results: Hair Type: {hair_type}, Curl Pattern: {curl_pattern}, Vegan: {vegan}, Maintenance Level: {maintenance_level}")
+            print(
+                f"Quiz Results: Hair Type: {hair_type}, Curl Pattern: {curl_pattern}, Vegan: {vegan}, Maintenance Level: {maintenance_level}, Price: {price_range}")
 
-            # Define product types for each maintenance level
-            maintenance_mapping = {
-                "low": ["Shampoo", "Conditioner", "Curl Cream"],
-                "medium": ["Shampoo", "Conditioner", "Leave-In", "Mousse/Foam"],
-                "high": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse/Foam"]
-            }
+            # Price filtering
+            if price_range == "$":
+                products = HairProduct.objects.filter(price__lte=12.00)
+            elif price_range == "$$":
+                products = HairProduct.objects.filter(price__gt=12.00, price__lte=25.00)
+            else:  # "$$$"
+                products = HairProduct.objects.filter(price__gt=25.00)
 
-            # Get allowed product types for the selected maintenance level
-            allowed_product_types = maintenance_mapping.get(maintenance_level, [])
-
-            # Filter products based on quiz results
-            products = HairProduct.objects.filter(
-                hair_type__icontains=hair_type,  # Match hair type
-                curl_pattern__icontains=curl_pattern,  # Match curl pattern
-                vegan=vegan,  # Match vegan preference
-                category__in=allowed_product_types  # Match maintenance-level product types
+            # Further filter based on user input
+            products = products.filter(
+                hair_type__icontains=hair_type,
+                curl_pattern__icontains=curl_pattern,
+                vegan=vegan
             )
 
-            # Debugging: Print filtered products count
-            print(f"Filtered Products Count: {products.count()}")
-            for product in products:
-                print(f"Filtered Product: {product.name} - {product.category} (Hair Type: {product.hair_type}, Curl Pattern: {product.curl_pattern}, Vegan: {product.vegan})")
+            # Routine structure based on maintenance level
+            routine_steps = {
+                "Low": ["Shampoo", "Conditioner", "Curl Cream"],
+                "Medium": ["Shampoo", "Conditioner", "Leave-In", "Mousse/Foam"],
+                "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse/Foam"]
+            }
 
-            # Organizing products by category (Shampoo, Conditioner, etc.)
-            categorized_products = {category: [] for category in allowed_product_types}
-
+            # Categorize products into routine steps
+            categorized_products = {step: [] for step in routine_steps[maintenance_level]}
             for product in products:
-                if product.category in allowed_product_types:
+                if product.category in categorized_products:
                     categorized_products[product.category].append(product)
 
-            # Render the results template with categorized products
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
-                'maintenance_level': maintenance_level
+                'routine_steps': routine_steps[maintenance_level],
             })
 
     else:
-        # If the form is not submitted yet, initialize the empty form
         form = HairQuizForm()
 
-    # Render the quiz page with the form
+    # Ensure that if the method is GET or the form is invalid, the quiz page is returned
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
+
 
 def quiz(request):
     if request.method == 'POST':

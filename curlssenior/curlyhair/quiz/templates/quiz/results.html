@@ -1,14 +1,22 @@
-<h2>Recommended Hair Care Routine ({{ maintenance_level|capfirst }} Maintenance)</h2>
+{% load custom_filters %}
 
-{% for category, products in categorized_products.items %}
-    <h3>{{ category }}</h3>
-    {% if products %}
-        <ul>
-        {% for product in products %}
-            <li>{{ product.name }} - {{ product.brand }} (Vegan: {{ product.vegan }})</li>
+{% block content %}
+    <h2>Your Routine!</h2>
+
+    <ol>
+        {% for step in routine_steps %}
+            <li>
+                <label for="{{ step }}">{{ step }}:</label>
+                <select id="{{ step }}" name="{{ step }}">
+                    {% if categorized_products|get_item:step %}
+                        {% for product in categorized_products|get_item:step %}
+                            <option value="{{ product.name }}">{{ product.name }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option>No products available</option>
+                    {% endif %}
+                </select>
+            </li>
         {% endfor %}
-        </ul>
-    {% else %}
-        <p>No {{ category }} products found for your hair type and curl pattern.</p>
-    {% endif %}
-{% endfor %}
+    </ol>
+{% endblock %}
