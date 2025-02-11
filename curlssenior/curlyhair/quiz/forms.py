@@ -51,3 +51,14 @@ class HairQuizForm(forms.Form):
     def clean_weight(self):
         data = self.cleaned_data['weight']
         return data
+
+from django import forms
+from .models import TriedProduct
+
+class TriedProductForm(forms.ModelForm):
+    class Meta:
+        model = TriedProduct
+        fields = ['product_type', 'product_name', 'rating', 'review']
+        widgets = {
+            'rating': forms.Select(choices=TriedProduct.RATINGS),
+        }

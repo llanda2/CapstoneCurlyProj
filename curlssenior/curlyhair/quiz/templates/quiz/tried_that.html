@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to the Curly Hair Project!</h1>
-    <a href="{% url 'hair_type_quiz' %}">Take the Quiz</a>
+{% extends 'base_generic.html' %}
+{% block content %}
 <h2>Tried That: Log Your Products</h2>
 
-<form method="post" action="{% url 'tried_that' %}">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Log Product</button>
@@ -25,5 +17,4 @@
     {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}

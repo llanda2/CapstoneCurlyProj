@@ -6,7 +6,19 @@ from .forms import HairQuizForm
 
 # Home view
 def home(request):
-    return render(request, 'quiz/home.html')  # You can render a template here
+    return render(request, 'quiz/home.html')
+    if request.method == 'POST':
+        form = TriedProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Reloads the home page after submission
+    else:
+        form = TriedProductForm()
+
+    logged_products = TriedProduct.objects.all().order_by('-created_at')  # Show most recent first
+
+    return render(request, 'home.html', {'form': form, 'logged_products': logged_products})
+    # You can render a template here
 
 
 from django.shortcuts import render
@@ -90,3 +102,19 @@ def quiz(request):
         return render(request, 'quiz/results.html', {'products': recommended_products})
 
     return render(request, 'quiz/quiz.html')
+from django.shortcuts import render, redirect
+from .models import TriedProduct
+from .forms import TriedProductForm
+
+def tried_that_view(request):
+    if request.method == 'POST':
+        form = TriedProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tried_that')  # Redirect to the same page after submission
+    else:
+        form = TriedProductForm()
+
+    logged_products = TriedProduct.objects.all().order_by('-created_at')  # Display in descending order
+
+    return render(request, 'tried_that.html', {'form': form, 'logged_products': logged_products})

@@ -19,10 +19,12 @@ from django.urls import path, include  # Add 'include' to include app URLs
 from curlyhair import views  # Make sure this is the correct import path
 from django.shortcuts import render
 
+from curlyhair.quiz.views import tried_that_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # Root URL now points to the home view
-    path('quiz/', include('quiz.urls')),  # Include the quiz app URLs here
+    path('quiz/', include('quiz.urls')),
+    path('tried-that/', views,tried_that_view, name='tried_that'),  # Include the quiz app URLs here
 ]
 
