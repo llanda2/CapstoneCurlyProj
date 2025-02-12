@@ -1,34 +1,14 @@
-# views.py
-from django.shortcuts import render
-from .models import HairProduct, HairQuiz  # Make sure HairQuiz is imported
-from .forms import HairQuizForm
+from django.shortcuts import render, redirect
+from .models import HairProduct, HairQuiz, TriedProduct
+from .forms import HairQuizForm, TriedProductForm
 
 
 # Home view
 def home(request):
     return render(request, 'quiz/home.html')
-    if request.method == 'POST':
-        form = TriedProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')  # Reloads the home page after submission
-    else:
-        form = TriedProductForm()
-
-    logged_products = TriedProduct.objects.all().order_by('-created_at')  # Show most recent first
-
-    return render(request, 'home.html', {'form': form, 'logged_products': logged_products})
-    # You can render a template here
 
 
-from django.shortcuts import render
-from .forms import HairQuizForm
-
-from django.shortcuts import render
-from .forms import HairQuizForm
-from .models import HairProduct
-
-
+# Hair type quiz view
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
@@ -38,7 +18,7 @@ def hair_type_quiz(request):
             curl_pattern = form.cleaned_data['curl_pattern']
             vegan = form.cleaned_data['vegan']
             maintenance_level = form.cleaned_data['maintenance_level']
-            price_range = form.cleaned_data['price_range']  # "$", "$$", or "$$$"
+            price_range = form.cleaned_data['price_range']
 
             print(
                 f"Quiz Results: Hair Type: {hair_type}, Curl Pattern: {curl_pattern}, Vegan: {vegan}, Maintenance Level: {maintenance_level}, Price: {price_range}")
@@ -75,14 +55,13 @@ def hair_type_quiz(request):
                 'categorized_products': categorized_products,
                 'routine_steps': routine_steps[maintenance_level],
             })
-
     else:
         form = HairQuizForm()
 
-    # Ensure that if the method is GET or the form is invalid, the quiz page is returned
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
 
 
+# Quiz view
 def quiz(request):
     if request.method == 'POST':
         curl_pattern = request.POST.get('curl_pattern')
@@ -102,31 +81,12 @@ def quiz(request):
         return render(request, 'quiz/results.html', {'products': recommended_products})
 
     return render(request, 'quiz/quiz.html')
-<<<<<<< HEAD
-=======
 
 
-from django.http import HttpResponse
-
->>>>>>> a467c95 (Tried that Page Working, need to add to home html)
 from django.shortcuts import render, redirect
 from .models import TriedProduct
 from .forms import TriedProductForm
 
-<<<<<<< HEAD
-def tried_that_view(request):
-    if request.method == 'POST':
-        form = TriedProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('tried_that')  # Redirect to the same page after submission
-    else:
-        form = TriedProductForm()
-
-    logged_products = TriedProduct.objects.all().order_by('-created_at')  # Display in descending order
-
-    return render(request, 'tried_that.html', {'form': form, 'logged_products': logged_products})
-=======
 
 def tried_that(request):
     if request.method == "POST":
@@ -143,4 +103,3 @@ def tried_that(request):
         'form': form,
         'logged_products': logged_products
     })
->>>>>>> a467c95 (Tried that Page Working, need to add to home html)

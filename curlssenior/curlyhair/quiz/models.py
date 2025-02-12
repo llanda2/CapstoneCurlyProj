@@ -17,22 +17,6 @@ class HairProduct(models.Model):
         return self.name
 
 
-class TriedProduct(models.Model):
-    product = models.ForeignKey(HairProduct, on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField(choices=[
-        (1, "Awful, never again"),
-        (2, "Not great"),
-        (3, "Okay, would try again"),
-        (4, "Good, recommend"),
-        (5, "Amazing, holy grail product")
-    ])
-    notes = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.product.name} - {self.rating} Stars"
-
-
 class HairQuiz(models.Model):
     CURL_PATTERN_CHOICES = [
         ('2A', '2A'), ('2B', '2B'), ('2C', '2C'), ('3A', '3A'),
@@ -50,26 +34,17 @@ class HairQuiz(models.Model):
         return f"{self.curl_pattern}, {self.hair_type}, {'Vegan' if self.vegan_preference else 'Non-Vegan'}"
 
 
-from django.db import models
-
-
 class TriedProduct(models.Model):
-    PRODUCT_CATEGORIES = [
-        ('Shampoo', 'Shampoo'),
-        ('Conditioner', 'Conditioner'),
-        ('Leave-In', 'Leave-In'),
-        ('Curl Cream', 'Curl Cream'),
-        ('Gel', 'Gel'),
-        ('Mousse/Foam', 'Mousse/Foam'),
-    ]
-
-    RATINGS = [(i, str(i)) for i in range(1, 6)]  # 1 to 5 rating scale
-
-    product_type = models.CharField(max_length=50, choices=PRODUCT_CATEGORIES)
-    product_name = models.CharField(max_length=255)  # User will select from a list
-    rating = models.IntegerField(choices=RATINGS)  # 1 to 5
-    review = models.TextField(blank=True, null=True)  # Optional user notes
+    product = models.ForeignKey(HairProduct, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(choices=[
+        (1, "Awful, never again"),
+        (2, "Not great"),
+        (3, "Okay, would try again"),
+        (4, "Good, recommend"),
+        (5, "Amazing, holy grail product")
+    ])
+    notes = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.product_name} ({self.rating}/5)"
+        return f"{self.product.name} - {self.rating} Stars"

@@ -8,13 +8,8 @@ from django import forms
 from .models import TriedProduct
 
 
-class TriedProductForm(forms.ModelForm):
-    class Meta:
-        model = TriedProduct
-        fields = ['product', 'rating', 'notes']
-        widgets = {
-            'notes': forms.Textarea(attrs={'rows': 3}),
-        }
+from django import forms
+from .models import TriedProduct
 
 
 class HairQuizForm(forms.Form):
@@ -70,7 +65,8 @@ from .models import TriedProduct
 class TriedProductForm(forms.ModelForm):
     class Meta:
         model = TriedProduct
-        fields = ['product_type', 'product_name', 'rating', 'review']
+        fields = ['product', 'rating', 'notes']
         widgets = {
-            'rating': forms.Select(choices=TriedProduct.RATINGS),
+            'notes': forms.Textarea(attrs={'rows': 3}),
         }
+
