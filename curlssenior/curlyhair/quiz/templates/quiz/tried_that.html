@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base_generic.html' %}
 {% block content %}
 <h2>Tried That: Log Your Products</h2>
@@ -18,3 +19,40 @@
 </ul>
 
 {% endblock %}
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tried That</title>
+</head>
+<body>
+    <h1>Tried That Page</h1>
+
+    <!-- Form for logging products -->
+    <h2>Log a New Product</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <!-- List of logged products -->
+    <h2>Previously Logged Products</h2>
+    <ul>
+        {% for product in logged_products %}
+            <li>
+                <strong>{{ product.product.name }}</strong> - {{ product.rating }} Stars
+                {% if product.notes %}
+                    <p><em>{{ product.notes }}</em></p>
+                {% endif %}
+                <p><small>Logged on: {{ product.created_at }}</small></p>
+            </li>
+        {% empty %}
+            <p>No products logged yet.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+>>>>>>> a467c95 (Tried that Page Working, need to add to home html)

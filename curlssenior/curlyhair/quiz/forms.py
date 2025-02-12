@@ -4,6 +4,18 @@
 from django import forms
 
 from django import forms
+from django import forms
+from .models import TriedProduct
+
+
+class TriedProductForm(forms.ModelForm):
+    class Meta:
+        model = TriedProduct
+        fields = ['product', 'rating', 'notes']
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 3}),
+        }
+
 
 class HairQuizForm(forms.Form):
     HAIR_TYPES = [

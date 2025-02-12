@@ -2,7 +2,6 @@
 from django.db import models
 
 
-
 class HairProduct(models.Model):
     brand = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
@@ -16,6 +15,22 @@ class HairProduct(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class TriedProduct(models.Model):
+    product = models.ForeignKey(HairProduct, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(choices=[
+        (1, "Awful, never again"),
+        (2, "Not great"),
+        (3, "Okay, would try again"),
+        (4, "Good, recommend"),
+        (5, "Amazing, holy grail product")
+    ])
+    notes = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.rating} Stars"
 
 
 class HairQuiz(models.Model):

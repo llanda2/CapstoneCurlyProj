@@ -102,10 +102,18 @@ def quiz(request):
         return render(request, 'quiz/results.html', {'products': recommended_products})
 
     return render(request, 'quiz/quiz.html')
+<<<<<<< HEAD
+=======
+
+
+from django.http import HttpResponse
+
+>>>>>>> a467c95 (Tried that Page Working, need to add to home html)
 from django.shortcuts import render, redirect
 from .models import TriedProduct
 from .forms import TriedProductForm
 
+<<<<<<< HEAD
 def tried_that_view(request):
     if request.method == 'POST':
         form = TriedProductForm(request.POST)
@@ -118,3 +126,21 @@ def tried_that_view(request):
     logged_products = TriedProduct.objects.all().order_by('-created_at')  # Display in descending order
 
     return render(request, 'tried_that.html', {'form': form, 'logged_products': logged_products})
+=======
+
+def tried_that(request):
+    if request.method == "POST":
+        form = TriedProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tried_that')  # Redirect back to the same page
+    else:
+        form = TriedProductForm()
+
+    # Fetch all logged products
+    logged_products = TriedProduct.objects.all()
+    return render(request, 'quiz/tried_that.html', {
+        'form': form,
+        'logged_products': logged_products
+    })
+>>>>>>> a467c95 (Tried that Page Working, need to add to home html)
