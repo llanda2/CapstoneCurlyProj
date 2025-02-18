@@ -1,22 +1,33 @@
 {% load custom_filters %}
 
 {% block content %}
-    <h2>Your Routine!</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Routine!</h2>
 
-    <ol>
-        {% for step in routine_steps %}
-            <li>
-                <label for="{{ step }}">{{ step }}:</label>
-                <select id="{{ step }}" name="{{ step }}">
-                    {% if categorized_products|get_item:step %}
-                        {% for product in categorized_products|get_item:step %}
-                            <option value="{{ product.name }}">{{ product.name }}</option>
-                        {% endfor %}
-                    {% else %}
-                        <option>No products available</option>
-                    {% endif %}
-                </select>
-            </li>
-        {% endfor %}
-    </ol>
+    {% if routine_steps %}
+        <ol class="list-group list-group-numbered">
+            {% for step in routine_steps %}
+                <li class="list-group-item">
+                    <div class="mb-2">
+                        <strong>{{ step }}</strong>
+                    </div>
+                    <label for="{{ step }}" class="form-label">Choose a product:</label>
+                    <select id="{{ step }}" name="{{ step }}" class="form-select">
+                        {% if categorized_products|get_item:step %}
+                            {% for product in categorized_products|get_item:step %}
+                                <option value="{{ product.name }}">{{ product.name }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option>No products available</option>
+                        {% endif %}
+                    </select>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div class="alert alert-warning text-center mt-4" role="alert">
+            No routine steps available. Please try again later.
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
