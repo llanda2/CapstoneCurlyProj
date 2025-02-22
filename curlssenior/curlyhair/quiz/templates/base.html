@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Curly Hair Project{% endblock %}</title>
+
+    <style>
+        /* General Styles */
+        body {
+            background-color: #D4B08C; /* Sand */
+            color: #F5F5F5; /* Cloud (Minimized, mostly for text contrast) */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #566C80; /* Storm */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #D4B08C; /* Sand */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #8CAB9B; /* Sage */
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Headers */
+        h1, h2 {
+            font-weight: 700;
+            color: #F5F5F5; /* Cloud for contrast */
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #B97375; /* Terra */
+            color: #F5F5F5; /* Cloud */
+        }
+
+        .btn-primary:hover {
+            background-color: #9B5E5E; /* Darker Terra */
+        }
+
+        .btn-success {
+            background-color: #566C80; /* Storm */
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #455465; /* Darker Storm */
+        }
+
+        /* Cards */
+        .card {
+            background-color: #B97375; /* Terra */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* List Items */
+        .list-group {
+            padding: 0;
+            list-style: none;
+        }
+
+        .list-group-item {
+            padding: 10px;
+            background-color: #D4B08C; /* Sand */
+            border-bottom: 1px solid #8CAB9B; /* Sage */
+            color: #566C80; /* Storm */
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">CurlyHair</a>
+        <a href="{% url 'hair_type_quiz' %}">Quiz</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

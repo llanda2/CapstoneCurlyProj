@@ -1,29 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Home - Curly Hair Project{% endblock %}
+
+{% block content %}
     <h1>Welcome to the Curly Hair Project!</h1>
-    <a href="{% url 'hair_type_quiz' %}">Take the Quiz</a>
-<h2>Tried That: Log Your Products</h2>
+    <p style="text-align:center;">Find, track, and log products that are perfect for your curly hair.</p>
 
-<form method="post" action="{% url 'tried_that' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log Product</button>
-</form>
+    <div style="text-align: center;">
+        <a href="{% url 'hair_type_quiz' %}" class="btn btn-primary">Take the Quiz</a>
+        <a href="{% url 'tried_that' %}" class="btn btn-success">Tried That: Log Your Products</a>
+    </div>
 
-<h3>Previously Logged Products</h3>
-<ul>
-    {% for product in logged_products %}
-        <li><strong>{{ product.product_name }}</strong> - Rated: {{ product.rating }}/5</li>
-    {% empty %}
-        <p>No products logged yet.</p>
-    {% endfor %}
-</ul>
-
-</body>
-</html>
+    <h2 style="margin-top: 30px;">Previously Logged Products</h2>
+    <ul class="list-group">
+        {% if logged_products %}
+            {% for product in logged_products %}
+                <li class="list-group-item">
+                    <strong>{{ product.name }}</strong> - Rated: {{ product.rating }}/5
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="list-group-item text-muted">No products logged yet.</li>
+        {% endif %}
+    </ul>
+{% endblock %}
