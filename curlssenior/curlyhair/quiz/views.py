@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import HairProduct, HairQuiz, TriedProduct
 from .forms import HairQuizForm, TriedProductForm
+from django.shortcuts import render
+from .models import TriedProduct
 
 
 # Home view
 def home(request):
-    return render(request, 'quiz/home.html')
+    logged_products = TriedProduct.objects.all()  # Fetch all logged products
+    return render(request, 'home.html', {'logged_products': logged_products})
 
 
 # Hair type quiz view
