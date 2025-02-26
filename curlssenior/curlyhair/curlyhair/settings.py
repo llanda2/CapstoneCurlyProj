@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quiz',
-    'curlyhair'
+    'curlyhair',
+    # 'curlssenior.curlyhair.quiz',
 ]
 
 MIDDLEWARE = [
