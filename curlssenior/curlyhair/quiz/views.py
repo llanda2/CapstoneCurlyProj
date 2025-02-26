@@ -1,8 +1,9 @@
 from .forms import HairQuizForm
 from .models import HairProduct, HairQuiz
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from quiz.models import TriedProduct  # Import the model
+from .forms import TriedProductForm
+
 
 def home(request):
     # Debug: Print the logged products to check if they're fetched
@@ -51,7 +52,7 @@ def hair_type_quiz(request):
                 "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse/Foam"]
             }
 
-            # Categorize products into routine steps
+            # Categorize products into routine steps (now includes brand)
             categorized_products = {step: [] for step in routine_steps[maintenance_level]}
             for product in products:
                 if product.category in categorized_products:
@@ -87,11 +88,6 @@ def quiz(request):
         return render(request, 'quiz/results.html', {'products': recommended_products})
 
     return render(request, 'quiz/quiz.html')
-
-
-from django.shortcuts import render, redirect
-from .models import TriedProduct
-from .forms import TriedProductForm
 
 
 def tried_that(request):
