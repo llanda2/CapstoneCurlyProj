@@ -9,56 +9,66 @@
         /* General Styles */
         body {
             background-color: #D4B08C; /* Sand */
-            color: #F5F5F5; /* Cloud (Minimized, mostly for text contrast) */
-            font-family: Arial, sans-serif;
+            color: #F5F5F5; /* Cloud */
+            font-family: 'Roboto', sans-serif; /* More refined font */
             margin: 0;
             padding: 0;
+            line-height: 1.5;
         }
 
         /* Navbar */
         .navbar {
             background-color: #566C80; /* Storm */
-            padding: 15px;
+            padding: 18px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .navbar a {
             color: #D4B08C; /* Sand */
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.3rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #F5F5F5; /* Cloud for contrast */
         }
 
         /* Main Container */
         .container {
-            width: 90%;
-            max-width: 1000px;
+            width: 95%;
+            max-width: 1100px;
             margin: 30px auto;
-            padding: 20px;
+            padding: 30px;
             background-color: #8CAB9B; /* Sage */
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 6px; /* Slightly more subtle rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* Headers */
         h1, h2 {
-            font-weight: 700;
-            color: #F5F5F5; /* Cloud for contrast */
+            font-weight: 600;
+            color: #F5F5F5; /* Cloud */
             text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 12px 20px;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            font-weight: bold;
+            padding: 12px 28px;
+            margin: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
             text-align: center;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 4px; /* Subtle corner radius */
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .btn-primary {
@@ -68,6 +78,7 @@
 
         .btn-primary:hover {
             background-color: #9B5E5E; /* Darker Terra */
+            transform: translateY(-2px); /* Slight hover effect */
         }
 
         .btn-success {
@@ -77,19 +88,21 @@
 
         .btn-success:hover {
             background-color: #455465; /* Darker Storm */
+            transform: translateY(-2px); /* Slight hover effect */
         }
 
         /* Cards */
         .card {
             background-color: #B97375; /* Terra */
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
+            padding: 22px;
+            border-radius: 6px; /* Subtle corner radius */
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         /* List Items */
@@ -99,10 +112,16 @@
         }
 
         .list-group-item {
-            padding: 10px;
+            padding: 12px;
             background-color: #D4B08C; /* Sand */
             border-bottom: 1px solid #8CAB9B; /* Sage */
             color: #566C80; /* Storm */
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #B8A38D; /* Subtle hover effect */
         }
 
         .list-group-item:last-child {
