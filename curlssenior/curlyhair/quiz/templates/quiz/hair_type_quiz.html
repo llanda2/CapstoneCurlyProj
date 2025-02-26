@@ -6,75 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Type Quiz</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif; /* Modern font */
             background-color: #F5F5F5; /* Cloud */
             color: #566C80; /* Storm */
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         h1, h2 {
             color: #B97375; /* Terra */
+            font-weight: 600;
         }
 
+        /* Navbar */
         .navbar {
             background-color: #D4B08C; /* Sand */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand, .nav-link {
             color: #566C80; /* Storm */
+            font-weight: 500;
         }
 
         .navbar-brand:hover, .nav-link:hover {
             color: #B97375; /* Terra */
         }
 
+        /* Container */
         .container {
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
+        /* Card Styles */
         .card {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Subtle rounded corners */
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
             margin-bottom: 30px;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
+        .card-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
         .btn-primary {
             background-color: #8CAB9B; /* Sage */
             border: none;
-            padding: 0.5rem 1.5rem;
+            padding: 0.75rem 2rem;
             font-size: 1.1rem;
-            border-radius: 5px;
+            border-radius: 30px; /* Modern rounded corners */
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #6E9485; /* Slightly darker Sage */
+            background-color: #6E9485; /* Darker Sage */
         }
 
-        .list-group-item {
-            background-color: #F5F5F5; /* Cloud */
-            border: 1px solid #D4B08C; /* Sand */
-            margin-bottom: 10px;
-        }
-
+        /* Form Elements */
         .form-label {
             color: #566C80; /* Storm */
+            font-weight: 500;
+            margin-bottom: 5px;
         }
 
         select {
-            background-color: #D4B08C; /* Sand */
-            border: 1px solid #8CAB9B; /* Sage */
-            padding: 0.5rem;
-            border-radius: 5px;
+            background-color: #F5F5F5; /* Cloud */
+            border: 1px solid #D4B08C; /* Sand */
+            padding: 0.75rem;
+            border-radius: 30px; /* Modern rounded corners */
             font-size: 1rem;
             color: #566C80; /* Storm */
+            transition: border-color 0.3s ease;
         }
 
         select:focus {
@@ -82,41 +96,57 @@
             outline: none;
         }
 
+        /* HR (Separator Line) */
         hr {
             border: none;
             border-top: 2px solid #566C80; /* Storm */
             margin: 30px 0;
+        }
+
+        /* List Items */
+        .list-group-item {
+            background-color: #F5F5F5; /* Cloud */
+            border: 1px solid #D4B08C; /* Sand */
+            margin-bottom: 12px;
+            padding: 1rem;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body class="bg-light">
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">CurlyHair</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tried_that' %}">Tried That</a>
-                    </li>
-                </ul>
-            </div>
+   <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <!-- Navbar Brand (Aligned Left) -->
+        <a class="navbar-brand" href="#">CurlyHair</a>
+
+        <!-- Navbar Toggler (for mobile view) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links (Aligned Right) -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto"> <!-- ms-auto for right alignment -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tried_that' %}">Tried That</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
     <div class="container mt-5">
         <!-- Quiz Section -->
         <div class="card shadow-sm mb-4">
             <div class="card-body">
-                <h1 class="card-title text-center">Hair Type Quiz</h1>
+                <h1 class="card-title">Hair Type Quiz</h1>
                 <form method="POST" class="mt-4">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -131,7 +161,7 @@
         {% block content %}
         <div class="card shadow-sm">
             <div class="card-body">
-                <h2 class="card-title text-center">Your Routine!</h2>
+                <h2 class="card-title">Your Routine!</h2>
                 <ol class="list-group list-group-numbered mt-4">
                     {% for step in routine_steps %}
                         <li class="list-group-item">
