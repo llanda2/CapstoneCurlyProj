@@ -80,15 +80,19 @@
                                     <strong>{{ step }}</strong>
                                 </div>
                                 <label for="{{ step }}" class="form-label">Choose a product:</label>
-                                <select id="{{ step }}" name="{{ step }}" class="form-select">
-                                    {% if categorized_products|get_item:step %}
-                                        {% for product in categorized_products|get_item:step %}
-                                            <option value="{{ product.name }}">{{ product.name }}</option>
-                                        {% endfor %}
-                                    {% else %}
-                                        <option>No products available</option>
-                                    {% endif %}
-                                </select>
+                               <select id="{{ step }}" name="{{ step }}" class="form-select">
+    {% if categorized_products|get_item:step %}
+        {% for product in categorized_products|get_item:step %}
+            <option value="{{ product.name }}">
+    {% if product.brand %}{{ product.brand }} - {% endif %}{{ product.name }}
+</option>
+
+        {% endfor %}
+    {% else %}
+        <option>No products available</option>
+    {% endif %}
+</select>
+
                             </li>
                         {% endfor %}
                     </ol>
