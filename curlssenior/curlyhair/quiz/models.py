@@ -29,7 +29,51 @@ class HairQuiz(models.Model):
     curl_pattern = models.CharField(max_length=3, choices=CURL_PATTERN_CHOICES)
     hair_type = models.CharField(max_length=6, choices=HAIR_TYPE_CHOICES)
     vegan_preference = models.BooleanField()
+    hair_type = models.CharField(max_length=50)
+    curl_pattern = models.CharField(max_length=50)
+    vegan = models.BooleanField(default=False)
+    maintenance_level = models.CharField(max_length=50,
+                                         choices=[('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')])
+    price_range = models.CharField(max_length=3, choices=[('$', 'Budget'), ('$$', 'Mid-Range'), ('$$$', 'High-End')])
 
+    # New lifestyle factors
+    hair_length = models.CharField(max_length=10, choices=[('Short', 'Short'), ('Medium', 'Medium'), ('Long', 'Long')])
+    scalp_condition = models.CharField(max_length=10,
+                                       choices=[('Oily', 'Oily'), ('Flaky', 'Flaky'), ('Balanced', 'Balanced')])
+    oiliness_timing = models.CharField(max_length=50,
+                                       choices=[('1 day', '1 day'), ('2 days', '2 days'), ('3+ days', '3+ days')])
+    wash_frequency = models.CharField(max_length=50, choices=[('Daily', 'Daily'), ('Every 2-3 days', 'Every 2-3 days'),
+                                                              ('Weekly', 'Weekly')])
+    hold_preference = models.CharField(max_length=20,
+                                       choices=[('Soft', 'Soft'), ('Medium', 'Medium'), ('Strong', 'Strong')])
+
+    # Updated styling product selection
+    styling_product = models.CharField(max_length=10, choices=[('Mousse', 'Mousse'), ('Gel', 'Gel')])
+
+    # Updated growth area selection
+    growth_areas = models.CharField(
+        max_length=20,
+        choices=[
+            ('Hydrating', 'Hydrating'),
+            ('Conditioning', 'Conditioning'),
+            ('Moisturizing', 'Moisturizing'),
+            ('Clarifying', 'Clarifying'),
+            ('Damage Control', 'Damage Control'),
+            ('Strengthening', 'Strengthening'),
+            ('Repair', 'Repair'),
+            ('Definition', 'Definition')
+        ]
+    )
+
+    dyed_or_bleached = models.BooleanField(default=False)
+    sensitive_scalp = models.BooleanField(default=False)
+    prone_to_flakes = models.BooleanField(default=False)
+    workout_frequency = models.CharField(max_length=20,
+                                         choices=[('Rarely', 'Rarely'), ('1-2 times/week', '1-2 times/week'),
+                                                  ('3+ times/week', '3+ times/week')])
+
+    def __str__(self):
+        return f"{self.hair_type} - {self.curl_pattern} Preferences"
     def __str__(self):
         return f"{self.curl_pattern}, {self.hair_type}, {'Vegan' if self.vegan_preference else 'Non-Vegan'}"
 

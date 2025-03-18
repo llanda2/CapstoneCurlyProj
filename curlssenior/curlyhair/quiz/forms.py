@@ -37,11 +37,29 @@ class HairQuizForm(forms.Form):
         ('$$$', '$$$ (Above $25)'),
     ]
 
+    STYLING_PRODUCTS = [
+        ('Mousse', 'Mousse'),
+        ('Gel', 'Gel'),
+    ]
+
+    GROWTH_AREAS = [
+        ('Hydrating', 'Hydrating'),
+        ('Conditioning', 'Conditioning'),
+        ('Moisturizing', 'Moisturizing'),
+        ('Clarifying', 'Clarifying'),
+        ('Damage Control', 'Damage Control'),
+        ('Strengthening', 'Strengthening'),
+        ('Repair', 'Repair'),
+        ('Definition', 'Definition'),
+    ]
+
     hair_type = forms.ChoiceField(choices=HAIR_TYPES, label="Hair Type")
     curl_pattern = forms.ChoiceField(choices=CURL_PATTERNS, label="Curl Pattern")
     vegan = forms.BooleanField(required=False, label="Vegan")
     maintenance_level = forms.ChoiceField(choices=MAINTENANCE_LEVELS, label="Maintenance Level")
-    price_range = forms.ChoiceField(choices=PRICE_RANGES, label="Price Range")  # <-- Add this line
+    price_range = forms.ChoiceField(choices=PRICE_RANGES, label="Price Range")
+    styling_product = forms.ChoiceField(choices=STYLING_PRODUCTS, label="Preferred Styling Product")
+    growth_areas = forms.MultipleChoiceField(choices=GROWTH_AREAS, label="Hair Growth & Care Focus", required=False, widget=forms.CheckboxSelectMultiple())  # ✅ Add this line
 
     def clean_hair_type(self):
         data = self.cleaned_data['hair_type']
