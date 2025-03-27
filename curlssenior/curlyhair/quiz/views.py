@@ -41,12 +41,9 @@ def hair_type_quiz(request):
             products = products.filter(category__icontains=quiz_data['styling_product'])
 
             # Apply growth area filtering
-            if quiz_data['growth_areas']:
-                products = products.filter(helpful_areas__icontains=quiz_data['growth_areas'])
-                # Apply filters
             if quiz_data.get('growth_areas'):  # ✅ Fix KeyError for growth_areas
                 for area in quiz_data['growth_areas']:
-                    products = products.filter(helpful_areas__icontains=area)
+                    products = products.filter(growth_areas__icontains=area)
 
                 return render(request, 'quiz/results.html', {'products': products})
 
