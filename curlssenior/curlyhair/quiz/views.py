@@ -14,15 +14,16 @@ def home(request):
         'logged_products': logged_products
     })
 
-
-# Hair type quiz view
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
         if form.is_valid():
             quiz_data = form.cleaned_data
 
-            # Price filtering
+            # Debugging: Print the cleaned form data
+            print("Quiz Data:", quiz_data)
+
+            # Step 1: Price Filtering
             if quiz_data['price_range'] == "$":
                 products = HairProduct.objects.filter(price__lte=12.00)
             elif quiz_data['price_range'] == "$$":
@@ -30,27 +31,31 @@ def hair_type_quiz(request):
             else:
                 products = HairProduct.objects.filter(price__gt=25.00)
 
-            # Filter by hair type, curl pattern, and vegan preference
+            print("After Price Filter:", products)
+
+            # Step 2: Hair Type & Vegan Filtering
             products = products.filter(
                 hair_type__icontains=quiz_data['hair_type'],
                 curl_pattern__icontains=quiz_data['curl_pattern'],
                 vegan=quiz_data['vegan']
             )
 
-            # Filter based on styling product choice (Mousse or Gel)
+            print("After Hair Type & Vegan Filter:", products)
+
+            # Step 3: Styling Product Filtering
             products = products.filter(category__icontains=quiz_data['styling_product'])
 
-            # Apply growth area filtering
-            if quiz_data.get('growth_areas'):  # ✅ Fix KeyError for growth_areas
+            print("After Styling Product Filter:", products)
+
+            print("Before Growth Areas Filter:", products)
+
+            if quiz_data.get('growth_areas'):
                 for area in quiz_data['growth_areas']:
+                    print(f"Filtering for growth area: {area}")
                     products = products.filter(growth_areas__icontains=area)
 
-                return render(request, 'quiz/results.html', {'products': products})
+            print("After Growth Areas Filter:", products)
 
-            else:
-                form = HairQuizForm()
-
-            return render(request, 'quiz/hair_type_quiz.html', {'form': form})
             # Routine steps
             routine_steps = {
                 "Low": ["Shampoo", "Conditioner", "Curl Cream"],
@@ -58,21 +63,24 @@ def hair_type_quiz(request):
                 "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse"]
             }
 
-            # Categorize products based on routine steps
+            # Categorizing products based on routine steps
             categorized_products = {step: [] for step in routine_steps[quiz_data['maintenance_level']]}
             for product in products:
-                if product.category in categorized_products:
-                    categorized_products[product.category].append(product)
+                for step in categorized_products:
+                    if step.lower() in product.category.lower():
+                        categorized_products[step].append(product)
+
+            print("Final Categorized Products:", categorized_products)
 
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
                 'routine_steps': routine_steps[quiz_data['maintenance_level']],
             })
+
     else:
         form = HairQuizForm()
 
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
-
 
 # Quiz view
 def quiz(request):
