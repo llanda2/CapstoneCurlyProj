@@ -6,27 +6,8 @@
     <h1>The Curly Hair Helper</h1>
     <p style="text-align:center;">Find, track, and log products that are perfect for your curly hair.</p>
 
-    <div style="text-align: center;">
+    <div style="text-align: center; margin-top: 30px;">
         <a href="{% url 'hair_type_quiz' %}" class="btn btn-primary">Take the Quiz</a>
         <a href="{% url 'tried_that' %}" class="btn btn-success">Tried That: Log Your Products</a>
     </div>
-
-   <!-- Logged Products Section -->
-<div class="col-md-6">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title">Previously Logged Products</h3>
-            <ul class="list-group">
-                {% for product in logged_products %}
-                    <li class="list-group-item">
-                        <strong>{{ product.product_name }}</strong> - Rated: {{ product.rating }}/5
-                    </li>
-                {% empty %}
-                    <li class="list-group-item text-muted">No products logged yet.</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
-
 {% endblock %}
