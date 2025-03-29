@@ -14,14 +14,18 @@ def home(request):
         'logged_products': logged_products
     })
 
+
+import re
+
+
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
         if form.is_valid():
             quiz_data = form.cleaned_data
 
-            # Debugging: Print the cleaned form data
-            print("Quiz Data:", quiz_data)
+            print("\n=== Quiz Data ===")
+            print(quiz_data)
 
             # Step 1: Price Filtering
             if quiz_data['price_range'] == "$":
@@ -31,7 +35,9 @@ def hair_type_quiz(request):
             else:
                 products = HairProduct.objects.filter(price__gt=25.00)
 
-            print("After Price Filter:", products)
+            print("\n=== After Price Filter ===")
+            for product in products:
+                print(f"{product.name} - {product.category}")
 
             # Step 2: Hair Type & Vegan Filtering
             products = products.filter(
@@ -40,21 +46,35 @@ def hair_type_quiz(request):
                 vegan=quiz_data['vegan']
             )
 
-            print("After Hair Type & Vegan Filter:", products)
+            print("\n=== After Hair Type & Vegan Filter ===")
+            if not products.exists():
+                print("No products left after Hair Type & Vegan filter!")
+            for product in products:
+                print(f"{product.name} - {product.category}")
 
             # Step 3: Styling Product Filtering
             products = products.filter(category__icontains=quiz_data['styling_product'])
 
-            print("After Styling Product Filter:", products)
+            print("\n=== After Styling Product Filter ===")
+            if not products.exists():
+                print("No products left after Styling Product filter!")
+            for product in products:
+                print(f"{product.name} - {product.category}")
 
-            print("Before Growth Areas Filter:", products)
-
+            # Step 4: Growth Areas Filtering with Fallback
             if quiz_data.get('growth_areas'):
-                for area in quiz_data['growth_areas']:
-                    print(f"Filtering for growth area: {area}")
-                    products = products.filter(growth_areas__icontains=area)
+                growth_area_filtered = products.filter(
+                    growth_areas__iregex=r'|'.join(quiz_data['growth_areas'])
+                )
 
-            print("After Growth Areas Filter:", products)
+                if growth_area_filtered.exists():
+                    products = growth_area_filtered
+
+            print("\n=== After Growth Areas Filter ===")
+            if not products.exists():
+                print("No products left after Growth Areas filter!")
+            for product in products:
+                print(f"{product.name} - {product.category}")
 
             # Routine steps
             routine_steps = {
@@ -63,14 +83,24 @@ def hair_type_quiz(request):
                 "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse"]
             }
 
-            # Categorizing products based on routine steps
+            # Categorizing products with more flexible matching
             categorized_products = {step: [] for step in routine_steps[quiz_data['maintenance_level']]}
+
+            print("\n=== Final Queryset Before Categorization ===")
+            for product in products:
+                category = getattr(product, 'category', 'MISSING')
+                print(f"{product.name} - {category}")
+                if category == 'MISSING':
+                    print("WARNING: Missing category for product!")
+
             for product in products:
                 for step in categorized_products:
-                    if step.lower() in product.category.lower():
+                    step_pattern = rf'\b{re.escape(step)}\b'  # Ensures word-boundary matching
+                    if re.search(step_pattern, product.category, re.IGNORECASE):
                         categorized_products[step].append(product)
 
-            print("Final Categorized Products:", categorized_products)
+            print("\n=== Final Categorized Products ===")
+            print(categorized_products)
 
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
@@ -81,6 +111,7 @@ def hair_type_quiz(request):
         form = HairQuizForm()
 
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
+
 
 # Quiz view
 def quiz(request):
