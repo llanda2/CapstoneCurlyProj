@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load custom_filters %}
+{% load static %}
 
 {% block title %}Your Routine - Curly Hair Project{% endblock %}
 
@@ -21,22 +22,32 @@
             {% if routine_steps %}
                 <ol style="list-style-position: inside; padding-left: 0;">
                     {% for step in routine_steps %}
-                        <li style="background-color: rgba(163, 189, 209, 0.2); border: 1px solid #A3BDD1; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
-                            <div style="margin-bottom: 10px; font-weight: bold; color: #2A4F75;">
-                                {{ step }}
+                        <li style="background-color: rgba(163, 189, 209, 0.2); border: 1px solid #A3BDD1; border-radius: 8px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                            <!-- Product Icon -->
+                            <img src="{% static 'images/products/' %}{{ step|lower|cut:" " }}.png"
+                                 alt="{{ step }}"
+                                 class="product-icon"
+                                 style="width: 50px; height: auto;">
+
+                            <div style="flex-grow: 1;">
+                                <div style="margin-bottom: 10px; font-weight: bold; color: #2A4F75;">
+                                    {{ step }}
+                                </div>
+                                <label for="{{ step }}" style="display: block; margin-bottom: 8px; font-family: 'Tenor Sans', sans-serif;">
+                                    Choose a product:
+                                </label>
+                                <select id="{{ step }}" name="{{ step }}" style="width: 100%; padding: 10px; border: 1px solid #5785A7; border-radius: 5px; background-color: white; color: #2A4F75;">
+                                    {% if categorized_products|get_item:step %}
+                                        {% for product in categorized_products|get_item:step %}
+                                            <option value="{{ product.name }}">
+                                                {% if product.brand %}{{ product.brand }} - {% endif %}{{ product.name }}
+                                            </option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option>No products available</option>
+                                    {% endif %}
+                                </select>
                             </div>
-                            <label for="{{ step }}" style="display: block; margin-bottom: 8px; font-family: 'Tenor Sans', sans-serif;">Choose a product:</label>
-                            <select id="{{ step }}" name="{{ step }}" style="width: 100%; padding: 10px; border: 1px solid #5785A7; border-radius: 5px; background-color: white; color: #2A4F75;">
-                                {% if categorized_products|get_item:step %}
-                                    {% for product in categorized_products|get_item:step %}
-                                        <option value="{{ product.name }}">
-                                            {% if product.brand %}{{ product.brand }} - {% endif %}{{ product.name }}
-                                        </option>
-                                    {% endfor %}
-                                {% else %}
-                                    <option>No products available</option>
-                                {% endif %}
-                            </select>
                         </li>
                     {% endfor %}
                 </ol>
