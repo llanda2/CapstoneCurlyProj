@@ -16,6 +16,8 @@ def home(request):
 
 
 import re
+from django.shortcuts import render
+from django.db.models import Q
 
 
 def hair_type_quiz(request):
@@ -23,9 +25,7 @@ def hair_type_quiz(request):
         form = HairQuizForm(request.POST)
         if form.is_valid():
             quiz_data = form.cleaned_data
-
-            print("\n=== Quiz Data ===")
-            print(quiz_data)
+            print("Quiz Data:", quiz_data)
 
             # Step 1: Price Filtering
             if quiz_data['price_range'] == "$":
@@ -35,9 +35,7 @@ def hair_type_quiz(request):
             else:
                 products = HairProduct.objects.filter(price__gt=25.00)
 
-            print("\n=== After Price Filter ===")
-            for product in products:
-                print(f"{product.name} - {product.category}")
+            print(f"After Price Filter: {products.count()} products")
 
             # Step 2: Hair Type & Vegan Filtering
             products = products.filter(
@@ -46,72 +44,97 @@ def hair_type_quiz(request):
                 vegan=quiz_data['vegan']
             )
 
-            print("\n=== After Hair Type & Vegan Filter ===")
-            if not products.exists():
-                print("No products left after Hair Type & Vegan filter!")
-            for product in products:
-                print(f"{product.name} - {product.category}")
+            print(f"After Hair Type & Vegan Filter: {products.count()} products")
 
-            # Step 3: Styling Product Filtering
-            products = products.filter(category__icontains=quiz_data['styling_product'])
+            # Step 3: Styling Product Filtering - Only if user selected one
+            # This should probably be optional, as it's restricting results too much
+            if quiz_data.get('styling_product'):
+                styling_filtered = products.filter(category__icontains=quiz_data['styling_product'])
+                print(f"After Styling Product Filter: {styling_filtered.count()} products")
 
-            print("\n=== After Styling Product Filter ===")
-            if not products.exists():
-                print("No products left after Styling Product filter!")
-            for product in products:
-                print(f"{product.name} - {product.category}")
+                # Only apply if we get results, otherwise keep the broader set
+                if styling_filtered.exists():
+                    products = styling_filtered
 
-            # Step 4: Growth Areas Filtering with Fallback
-            if quiz_data.get('growth_areas'):
+            # Step 4: Growth Areas Filtering (With Fallback)
+            if quiz_data.get('growth_areas') and quiz_data['growth_areas']:
                 growth_area_filtered = products.filter(
-                    growth_areas__iregex=r'|'.join(quiz_data['growth_areas'])
+                    Q(*[Q(growth_areas__icontains=area) for area in quiz_data['growth_areas']], _connector=Q.OR)
                 )
-
                 if growth_area_filtered.exists():
                     products = growth_area_filtered
 
-            print("\n=== After Growth Areas Filter ===")
-            if not products.exists():
-                print("No products left after Growth Areas filter!")
-            for product in products:
-                print(f"{product.name} - {product.category}")
+            print(f"After Growth Areas Filter: {products.count()} products")
 
-            # Routine steps
+            # Remove Duplicates
+            products = products.distinct()
+
+            # Routine steps mapping
             routine_steps = {
                 "Low": ["Shampoo", "Conditioner", "Curl Cream"],
                 "Medium": ["Shampoo", "Conditioner", "Leave-In", "Mousse/Gel"],
                 "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse"]
             }
 
-            # Categorizing products with more flexible matching
-            categorized_products = {step: [] for step in routine_steps[quiz_data['maintenance_level']]}
+            # Get all products for initial categorization before filtering by styling_product
+            all_matching_products = HairProduct.objects.filter(
+                hair_type__icontains=quiz_data['hair_type'],
+                curl_pattern__icontains=quiz_data['curl_pattern'],
+                vegan=quiz_data['vegan']
+            )
 
-            print("\n=== Final Queryset Before Categorization ===")
-            for product in products:
-                category = getattr(product, 'category', 'MISSING')
-                print(f"{product.name} - {category}")
-                if category == 'MISSING':
-                    print("WARNING: Missing category for product!")
+            if quiz_data['price_range'] == "$":
+                all_matching_products = all_matching_products.filter(price__lte=12.00)
+            elif quiz_data['price_range'] == "$$":
+                all_matching_products = all_matching_products.filter(price__gt=12.00, price__lte=25.00)
+            else:
+                all_matching_products = all_matching_products.filter(price__gt=25.00)
 
-            for product in products:
-                for step in categorized_products:
-                    step_pattern = rf'\b{re.escape(step)}\b'  # Ensures word-boundary matching
-                    if re.search(step_pattern, product.category, re.IGNORECASE):
-                        categorized_products[step].append(product)
+            # Apply growth areas filter if specified
+            if quiz_data.get('growth_areas') and quiz_data['growth_areas']:
+                growth_area_filtered = all_matching_products.filter(
+                    Q(*[Q(growth_areas__icontains=area) for area in quiz_data['growth_areas']], _connector=Q.OR)
+                )
+                if growth_area_filtered.exists():
+                    all_matching_products = growth_area_filtered
 
-            print("\n=== Final Categorized Products ===")
-            print(categorized_products)
+            # Categorization based on product types
+            steps_needed = routine_steps[quiz_data['maintenance_level']]
+            categorized_products = {}
+
+            for step in steps_needed:
+                # Replace Mousse/Gel with two separate searches if needed
+                if step == "Mousse/Gel":
+                    mousse_products = all_matching_products.filter(category__icontains="Mousse")
+                    gel_products = all_matching_products.filter(category__icontains="Gel")
+                    categorized_products["Mousse/Gel"] = list(mousse_products) + list(gel_products)
+                else:
+                    # For each step, find products that contain that product type
+                    matching_products = all_matching_products.filter(category__icontains=step)
+                    categorized_products[step] = list(matching_products)
+
+                print(f"Found {len(categorized_products[step])} products for {step}")
+
+            # If user specifically wanted a styling product, ensure it's included
+            if quiz_data.get('styling_product'):
+                styling_step = quiz_data['styling_product']
+                if styling_step in steps_needed:
+                    # Override with filtered products if we have any
+                    styling_products = products.filter(category__icontains=styling_step)
+                    if styling_products.exists():
+                        categorized_products[styling_step] = list(styling_products)
+
+            print("Final Categorized Products:", {k: len(v) for k, v in categorized_products.items()})
 
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
-                'routine_steps': routine_steps[quiz_data['maintenance_level']],
+                'routine_steps': steps_needed,
             })
 
     else:
         form = HairQuizForm()
 
     return render(request, 'quiz/hair_type_quiz.html', {'form': form})
-
 
 # Quiz view
 def quiz(request):
