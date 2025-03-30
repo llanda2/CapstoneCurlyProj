@@ -1,49 +1,153 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Find Your Curly Hair Routine</h1>
-<form method="post">
-    {% csrf_token %}
+<style>
+    .quiz-container {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #C6D7E3; /* Misty Blue background */
+        border-radius: 10px;
+    }
 
-    <div>
-        <label>{{ form.maintenance.label }}</label>
-        {{ form.maintenance }}
-    </div>
+    h1 {
+        color: #2A4F75; /* Deep Blue */
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
 
-    <div>
-        <label>{{ form.budget.label }}</label>
-        {{ form.budget }}
-    </div>
+    .question-block {
+        margin-bottom: 25px;
+        background-color: #A3BDD1; /* Powder Blue */
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-    <div>
-        <label>{{ form.curl_type.label }}</label>
-        {{ form.curl_type }}
-    </div>
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: #3A6A90; /* Steel Blue */
+        font-weight: bold;
+    }
 
-    <div>
-        <label>{{ form.vegan.label }}</label>
-        {{ form.vegan }}
-    </div>
+    select, input {
+        font-size: 1.1rem;
+        padding: 8px;
+        width: 80%;
+        max-width: 400px;
+        border: 2px solid #5785A7; /* Slate Blue */
+        border-radius: 5px;
+        text-align-last: center; /* Centers the text in select dropdowns */
+        text-align: center; /* Centers text in inputs */
+    }
 
-    <div>
-        <label>{{ form.hair_length.label }}</label>
-        {{ form.hair_length }}
-    </div>
+    /* Fix for select elements */
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%235785A7' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        padding-right: 30px;
+    }
 
-    <div>
-        <label>{{ form.scalp_condition.label }}</label>
-        {{ form.scalp_condition }}
-    </div>
+    button {
+        background-color: #2A4F75; /* Deep Blue */
+        color: white;
+        font-size: 1.3rem;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
 
-    <div>
-        <label>{{ form.oiliness.label }}</label>
-        {{ form.oiliness }}
-    </div>
+    button:hover {
+        background-color: #3A6A90; /* Steel Blue */
+    }
 
-    <div>
-        <label>{{ form.hold.label }}</label>
-        {{ form.hold }}
-    </div>
+    /* Ensure Django form elements are properly aligned */
+    .question-block > select,
+    .question-block > input {
+        align-self: center;
+    }
 
-    <button type="submit">Get My Routine</button>
-</form>
+    /* Fix for Django rendered select controls */
+    form select {
+        display: inline-block;
+        text-align: center;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="quiz-container">
+    <h1>Find Your Curly Hair Routine</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="question-block">
+            <label>{{ form.maintenance.label }}</label>
+            <div class="select-wrapper">
+                {{ form.maintenance }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.budget.label }}</label>
+            <div class="select-wrapper">
+                {{ form.budget }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.curl_type.label }}</label>
+            <div class="select-wrapper">
+                {{ form.curl_type }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.vegan.label }}</label>
+            <div class="select-wrapper">
+                {{ form.vegan }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.hair_length.label }}</label>
+            <div class="select-wrapper">
+                {{ form.hair_length }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.scalp_condition.label }}</label>
+            <div class="select-wrapper">
+                {{ form.scalp_condition }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.oiliness.label }}</label>
+            <div class="select-wrapper">
+                {{ form.oiliness }}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label>{{ form.hold.label }}</label>
+            <div class="select-wrapper">
+                {{ form.hold }}
+            </div>
+        </div>
+
+        <button type="submit">Get My Routine</button>
+    </form>
+</div>
 {% endblock %}
