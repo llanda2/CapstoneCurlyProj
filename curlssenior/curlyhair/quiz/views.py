@@ -133,35 +133,28 @@ def hair_type_quiz(request):
                     special_recommendations["Scalp Oil"] = list(oil_products)
                     print(f"Found {oil_products.count()} oil products for dry scalp")
 
-            # For oily scalp, recommend clarifying shampoo
-            elif scalp_condition and scalp_condition.lower() == 'oily':
-                # Use the name field instead of description since description doesn't exist
-                clarifying_shampoos = HairProduct.objects.filter(
-                    category__icontains="Shampoo",
-                    name__icontains="clarifying",  # Look for "clarifying" in the product name
+            # For oily or flaky scalp, recommend hair masks; otherwise, recommend oils
+            elif scalp_condition and scalp_condition.lower() in ['oily', 'flaky']:
+                recommended_category = "Hair Mask" if scalp_condition.lower() == "flaky" else "Oil"
+
+                recommended_products = HairProduct.objects.filter(
+                    category__icontains=recommended_category,
                     vegan=vegan,  # Maintain vegan preference
                 )
 
-                # If we don't find any with "clarifying" in the name, try alternative keywords
-                if not clarifying_shampoos.exists():
-                    clarifying_shampoos = HairProduct.objects.filter(
-                        category__icontains="Shampoo",
-                        # Some brands might have clarify in their name
-                        vegan=vegan
-                    )
+                # Apply price filtering
+                if price_range == "$":
+                    recommended_products = recommended_products.filter(price__lte=12.00)
+                elif price_range == "$$":
+                    recommended_products = recommended_products.filter(price__gt=12.00, price__lte=25.00)
+                else:
+                    recommended_products = recommended_products.filter(price__gt=25.00)
 
-                # Apply price filter to clarifying shampoos
-                if clarifying_shampoos.exists():
-                    if price_range == "$":
-                        clarifying_shampoos = clarifying_shampoos.filter(price__lte=12.00)
-                    elif price_range == "$$":
-                        clarifying_shampoos = clarifying_shampoos.filter(price__gt=12.00, price__lte=25.00)
-                    else:
-                        clarifying_shampoos = clarifying_shampoos.filter(price__gt=25.00)
+                if recommended_products.exists():
+                    special_recommendations[recommended_category] = list(recommended_products)
+                    print(
+                        f"Found {recommended_products.count()} {recommended_category} products for {scalp_condition} scalp")
 
-                    if clarifying_shampoos.exists():
-                        special_recommendations["Clarifying Shampoo"] = list(clarifying_shampoos)
-                        print(f"Found {clarifying_shampoos.count()} clarifying shampoos for oily scalp")
             for step in steps_needed:
                 # Special handling for Mousse/Gel
                 if step == "Mousse/Gel":
@@ -178,6 +171,7 @@ def hair_type_quiz(request):
                     categorized_products[step] = list(matching_products)
 
                 print(f"Found {len(categorized_products[step])} products for {step}")
+            print(f"Scalp Condition: {scalp_condition}")
 
             print("Final Categorized Products:", {k: len(v) for k, v in categorized_products.items()})
             print("Special Recommendations:", {k: len(v) for k, v in special_recommendations.items()})
