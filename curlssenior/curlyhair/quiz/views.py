@@ -41,6 +41,7 @@ def hair_type_quiz(request):
             hair_type = quiz_data.get('hair_type', '')
             curl_pattern = quiz_data.get('curl_pattern', '')
             vegan = quiz_data.get('vegan', False)
+            scalp_condition = quiz_data.get('scalp_condition', 'normal')  # Add this line
 
             # Convert string vegan value to boolean if needed
             if isinstance(vegan, str):
@@ -110,6 +111,57 @@ def hair_type_quiz(request):
             steps_needed = routine_steps.get(maintenance_level, routine_steps['Medium'])  # Fallback if invalid value
             categorized_products = {}
 
+            # Add special recommendations based on scalp condition
+            special_recommendations = {}
+
+            # For dry scalp, recommend oils
+            if scalp_condition and scalp_condition.lower() == 'dry':
+                oil_products = HairProduct.objects.filter(
+                    category__icontains="Oil",
+                    vegan=vegan,  # Maintain vegan preference
+                )
+
+                # Apply price filter to oils
+                if price_range == "$":
+                    oil_products = oil_products.filter(price__lte=12.00)
+                elif price_range == "$$":
+                    oil_products = oil_products.filter(price__gt=12.00, price__lte=25.00)
+                else:
+                    oil_products = oil_products.filter(price__gt=25.00)
+
+                if oil_products.exists():
+                    special_recommendations["Scalp Oil"] = list(oil_products)
+                    print(f"Found {oil_products.count()} oil products for dry scalp")
+
+            # For oily scalp, recommend clarifying shampoo
+            elif scalp_condition and scalp_condition.lower() == 'oily':
+                # Use the name field instead of description since description doesn't exist
+                clarifying_shampoos = HairProduct.objects.filter(
+                    category__icontains="Shampoo",
+                    name__icontains="clarifying",  # Look for "clarifying" in the product name
+                    vegan=vegan,  # Maintain vegan preference
+                )
+
+                # If we don't find any with "clarifying" in the name, try alternative keywords
+                if not clarifying_shampoos.exists():
+                    clarifying_shampoos = HairProduct.objects.filter(
+                        category__icontains="Shampoo",
+                        # Some brands might have clarify in their name
+                        vegan=vegan
+                    )
+
+                # Apply price filter to clarifying shampoos
+                if clarifying_shampoos.exists():
+                    if price_range == "$":
+                        clarifying_shampoos = clarifying_shampoos.filter(price__lte=12.00)
+                    elif price_range == "$$":
+                        clarifying_shampoos = clarifying_shampoos.filter(price__gt=12.00, price__lte=25.00)
+                    else:
+                        clarifying_shampoos = clarifying_shampoos.filter(price__gt=25.00)
+
+                    if clarifying_shampoos.exists():
+                        special_recommendations["Clarifying Shampoo"] = list(clarifying_shampoos)
+                        print(f"Found {clarifying_shampoos.count()} clarifying shampoos for oily scalp")
             for step in steps_needed:
                 # Special handling for Mousse/Gel
                 if step == "Mousse/Gel":
@@ -128,10 +180,13 @@ def hair_type_quiz(request):
                 print(f"Found {len(categorized_products[step])} products for {step}")
 
             print("Final Categorized Products:", {k: len(v) for k, v in categorized_products.items()})
+            print("Special Recommendations:", {k: len(v) for k, v in special_recommendations.items()})
 
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
                 'routine_steps': steps_needed,
+                'special_recommendations': special_recommendations,  # Add this to the context
+                'scalp_condition': scalp_condition,  # Pass this to the template
             })
 
     else:
