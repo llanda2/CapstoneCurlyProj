@@ -98,16 +98,16 @@ def hair_type_quiz(request):
             all_matching_products = all_matching_products.distinct()
 
             # Routine steps mapping
+            # Routine steps mapping
             routine_steps = {
                 "Low": ["Shampoo", "Conditioner", "Curl Cream"],
-                "Medium": ["Shampoo", "Conditioner", "Leave-In", "Mousse/Gel"],
-                "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse"]
+                "Medium": ["Shampoo", "Conditioner", "Curl Cream", "Gel/Mousse"],
+                "High": ["Shampoo", "Conditioner", "Leave-In", "Curl Cream", "Gel", "Mousse"]
             }
 
             # Get maintenance level with default
-            maintenance_level = quiz_data.get('maintenance_level', 'Medium')  # Default to Medium if not specified
-
-            # Categorization based on product types
+            # Convert to title case to match dictionary keys
+            maintenance_level = quiz_data.get('maintenance', 'medium').title()            # Categorization based on product types
             steps_needed = routine_steps.get(maintenance_level, routine_steps['Medium'])  # Fallback if invalid value
             categorized_products = {}
 
@@ -157,7 +157,8 @@ def hair_type_quiz(request):
 
             for step in steps_needed:
                 # Special handling for Mousse/Gel
-                if step == "Mousse/Gel":
+                # For the product categorization section, update this part:
+                if step == "Gel/Mousse" or step == "Mousse/Gel":
                     mousse_products = all_matching_products.filter(category__icontains="Mousse")
                     gel_products = all_matching_products.filter(category__icontains="Gel")
                     categorized_products[step] = list(mousse_products) + list(gel_products)
