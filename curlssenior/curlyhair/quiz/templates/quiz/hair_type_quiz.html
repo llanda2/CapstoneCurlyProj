@@ -1,45 +1,49 @@
 {% extends 'base.html' %}
-{% load custom_filters %}
-
-{% block title %}Hair Type Quiz - Curly Hair Project{% endblock %}
-
 {% block content %}
-    <h1>Hair Type Quiz</h1>
+<h1>Find Your Curly Hair Routine</h1>
+<form method="post">
+    {% csrf_token %}
 
-    <!-- Quiz Section -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Find Your Hair Type</h2>
-            <form method="POST" class="mt-4">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div style="text-align: center; margin-top: 20px;">
-                    <button type="submit" class="btn">Submit</button>
-                </div>
-            </form>
-        </div>
+    <div>
+        <label>{{ form.maintenance.label }}</label>
+        {{ form.maintenance }}
     </div>
 
-    <!-- Routine Section -->
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title">Your Routine!</h2>
-            <ol class="list-group list-group-numbered mt-4" style="padding-left: 20px;">
-                {% for step in routine_steps %}
-                    <li style="margin-bottom: 15px; padding: 10px; background: rgba(163, 189, 209, 0.2); border-radius: 5px;">
-                        <label for="{{ step }}" style="font-weight: 500; display: block; margin-bottom: 8px;">{{ step }}:</label>
-                        <select id="{{ step }}" name="{{ step }}" style="width: 100%; padding: 8px; border: 1px solid #A3BDD1; border-radius: 5px; background-color: white;">
-                            {% if categorized_products|get_item:step %}
-                                {% for product in categorized_products|get_item:step %}
-                                    <option value="{{ product.name }}">{{ product.name }}</option>
-                                {% endfor %}
-                            {% else %}
-                                <option>No products available</option>
-                            {% endif %}
-                        </select>
-                    </li>
-                {% endfor %}
-            </ol>
-        </div>
+    <div>
+        <label>{{ form.budget.label }}</label>
+        {{ form.budget }}
     </div>
+
+    <div>
+        <label>{{ form.curl_type.label }}</label>
+        {{ form.curl_type }}
+    </div>
+
+    <div>
+        <label>{{ form.vegan.label }}</label>
+        {{ form.vegan }}
+    </div>
+
+    <div>
+        <label>{{ form.hair_length.label }}</label>
+        {{ form.hair_length }}
+    </div>
+
+    <div>
+        <label>{{ form.scalp_condition.label }}</label>
+        {{ form.scalp_condition }}
+    </div>
+
+    <div>
+        <label>{{ form.oiliness.label }}</label>
+        {{ form.oiliness }}
+    </div>
+
+    <div>
+        <label>{{ form.hold.label }}</label>
+        {{ form.hold }}
+    </div>
+
+    <button type="submit">Get My Routine</button>
+</form>
 {% endblock %}

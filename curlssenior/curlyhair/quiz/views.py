@@ -28,17 +28,29 @@ def hair_type_quiz(request):
             print("Quiz Data:", quiz_data)
 
             # Step 1: Get base products matching hair type, curl pattern, vegan, and price
-            if quiz_data['price_range'] == "$":
+            # Use .get() method with a default to avoid KeyError
+            price_range = quiz_data.get('price_range')
+            if price_range == "$":
                 base_products = HairProduct.objects.filter(price__lte=12.00)
-            elif quiz_data['price_range'] == "$$":
+            elif price_range == "$$":
                 base_products = HairProduct.objects.filter(price__gt=12.00, price__lte=25.00)
             else:
                 base_products = HairProduct.objects.filter(price__gt=25.00)
 
+            # Get the values from the form data
+            hair_type = quiz_data.get('hair_type', '')
+            curl_pattern = quiz_data.get('curl_pattern', '')
+            vegan = quiz_data.get('vegan', False)
+
+            # Convert string vegan value to boolean if needed
+            if isinstance(vegan, str):
+                vegan = vegan.lower() in ('yes', 'true', 'y', 't', '1')
+
+            # Then use these variables in the filter
             base_products = base_products.filter(
-                hair_type__icontains=quiz_data['hair_type'],
-                curl_pattern__icontains=quiz_data['curl_pattern'],
-                vegan=quiz_data['vegan']
+                hair_type__icontains=hair_type,
+                curl_pattern__icontains=curl_pattern,
+                vegan=vegan
             )
 
             print(f"After Base Filters: {base_products.count()} products")
@@ -47,9 +59,10 @@ def hair_type_quiz(request):
             all_matching_products = base_products
 
             # Step 2: Apply Growth Areas Filter if specified (with fallback handling)
-            if quiz_data.get('growth_areas') and quiz_data['growth_areas']:
+            growth_areas = quiz_data.get('growth_areas', [])
+            if growth_areas:
                 # Create a Q object for each growth area
-                growth_q_objects = [Q(growth_areas__icontains=area) for area in quiz_data['growth_areas']]
+                growth_q_objects = [Q(growth_areas__icontains=area) for area in growth_areas]
 
                 # Combine Q objects with OR operator
                 if growth_q_objects:
@@ -66,8 +79,9 @@ def hair_type_quiz(request):
                         base_products = growth_filtered
 
             # Step 3: Optional Styling Product Filtering
-            if quiz_data.get('styling_product'):
-                styling_filtered = base_products.filter(category__icontains=quiz_data['styling_product'])
+            styling_product = quiz_data.get('styling_product')
+            if styling_product:
+                styling_filtered = base_products.filter(category__icontains=styling_product)
                 print(f"After Styling Product Filter: {styling_filtered.count()} products")
 
                 # Only apply if we get results, otherwise keep the broader set
@@ -89,8 +103,11 @@ def hair_type_quiz(request):
                 "High": ["Shampoo", "Conditioner", "Curl Cream", "Leave-In", "Gel", "Mousse"]
             }
 
+            # Get maintenance level with default
+            maintenance_level = quiz_data.get('maintenance_level', 'Medium')  # Default to Medium if not specified
+
             # Categorization based on product types
-            steps_needed = routine_steps[quiz_data['maintenance_level']]
+            steps_needed = routine_steps.get(maintenance_level, routine_steps['Medium'])  # Fallback if invalid value
             categorized_products = {}
 
             for step in steps_needed:
@@ -100,7 +117,7 @@ def hair_type_quiz(request):
                     gel_products = all_matching_products.filter(category__icontains="Gel")
                     categorized_products[step] = list(mousse_products) + list(gel_products)
                 # For styling product specifically requested by the user
-                elif quiz_data.get('styling_product') and step.lower() == quiz_data['styling_product'].lower():
+                elif styling_product and step.lower() == styling_product.lower():
                     matching_products = styling_products.filter(category__icontains=step)
                     categorized_products[step] = list(matching_products)
                 else:
