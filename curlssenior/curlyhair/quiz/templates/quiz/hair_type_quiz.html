@@ -26,7 +26,7 @@
         align-items: center;
     }
 
-    label {
+    .question-text {
         display: block;
         margin-bottom: 10px;
         font-size: 1.2rem;
@@ -94,22 +94,101 @@
     <form method="post">
         {% csrf_token %}
 
-        {% for field in form %}
         <div class="question-block">
-            <label>{{ field.label }}</label>
+            <span class="question-text">How much maintenance do you want to do with your hair?</span>
             <div class="response-wrapper">
-                {% for choice in field.field.choices %}
+                {% for choice in form.maintenance.field.choices %}
                     <label>
-                        <input type="{% if field.name == 'curl_type' or field.name == 'hair_length' %}radio{% else %}checkbox{% endif %}"
-                               name="{{ field.name }}"
-                               value="{{ choice.0 }}"
-                               {% if field.name == 'curl_type' or field.name == 'hair_length' %}required{% endif %}>
+                        <input type="radio" name="maintenance" value="{{ choice.0 }}" required>
                         <span class="response-option">{{ choice.1 }}</span>
                     </label>
                 {% endfor %}
             </div>
         </div>
-        {% endfor %}
+
+        <div class="question-block">
+            <span class="question-text">What's your budget? (per product)</span>
+            <div class="response-wrapper">
+                {% for choice in form.budget.field.choices %}
+                    <label>
+                        <input type="radio" name="budget" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">What’s your curl type?</span>
+            <div class="response-wrapper">
+                {% for choice in form.curl_type.field.choices %}
+                    <label>
+                        <input type="radio" name="curl_type" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">Do you prefer vegan products?</span>
+            <div class="response-wrapper">
+                {% for choice in form.vegan.field.choices %}
+                    <label>
+                        <input type="radio" name="vegan" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">How long is your hair?</span>
+            <div class="response-wrapper">
+                {% for choice in form.hair_length.field.choices %}
+                    <label>
+                        <input type="radio" name="hair_length" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">What’s your scalp condition?</span>
+            <div class="response-wrapper">
+                {% for choice in form.scalp_condition.field.choices %}
+                    <label>
+                        <input type="radio" name="scalp_condition" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">How soon does your hair get oily after washing?</span>
+            <div class="response-wrapper">
+                {% for choice in form.oiliness.field.choices %}
+                    <label>
+                        <input type="radio" name="oiliness" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">What level of hold do you prefer for styling products?</span>
+            <div class="response-wrapper">
+                {% for choice in form.hold.field.choices %}
+                    <label>
+                        <input type="radio" name="hold" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
 
         <button type="submit">Get My Routine</button>
     </form>
