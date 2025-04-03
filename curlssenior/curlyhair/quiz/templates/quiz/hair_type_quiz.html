@@ -1,190 +1,196 @@
-{% load custom_filters %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair Type Quiz</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Roboto', Arial, sans-serif; /* Modern font */
-            background-color: #F5F5F5; /* Cloud */
-            color: #566C80; /* Storm */
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .quiz-container {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #C6D7E3; /* Misty Blue background */
+        border-radius: 10px;
+    }
 
-        h1, h2 {
-            color: #B97375; /* Terra */
-            font-weight: 600;
-        }
+    h1 {
+        color: #2A4F75; /* Deep Blue */
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
 
-        /* Navbar */
-        .navbar {
-            background-color: #D4B08C; /* Sand */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .question-block {
+        margin-bottom: 25px;
+        background-color: #A3BDD1; /* Powder Blue */
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .navbar-brand, .nav-link {
-            color: #566C80; /* Storm */
-            font-weight: 500;
-        }
+    .question-text {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: #3A6A90; /* Steel Blue */
+        font-weight: bold;
+        text-align: center;
+    }
 
-        .navbar-brand:hover, .nav-link:hover {
-            color: #B97375; /* Terra */
-        }
+    .response-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+    }
 
-        /* Container */
-        .container {
-            margin-top: 40px;
-        }
+    .response-option {
+        background-color: #2A4F75; /* Deep Blue */
+        color: white;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+    }
 
-        /* Card Styles */
-        .card {
-            background-color: white;
-            border-radius: 10px; /* Subtle rounded corners */
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            margin-bottom: 30px;
-        }
+    .response-option:hover {
+        background-color: #3A6A90; /* Steel Blue */
+    }
 
-        .card-body {
-            padding: 2rem;
-        }
+    input[type="radio"],
+    input[type="checkbox"] {
+        display: none; /* Hide actual radio and checkbox elements */
+    }
 
-        .card-title {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    input[type="radio"]:checked + .response-option,
+    input[type="checkbox"]:checked + .response-option {
+        background-color: #1F3B5F; /* Darker Blue for selected */
+    }
 
-        /* Button Styles */
-        .btn-primary {
-            background-color: #8CAB9B; /* Sage */
-            border: none;
-            padding: 0.75rem 2rem;
-            font-size: 1.1rem;
-            border-radius: 30px; /* Modern rounded corners */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    button {
+        background-color: #2A4F75; /* Deep Blue */
+        color: white;
+        font-size: 1.3rem;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+        display: block;
+    }
 
-        .btn-primary:hover {
-            background-color: #6E9485; /* Darker Sage */
-        }
+    button:hover {
+        background-color: #3A6A90; /* Steel Blue */
+    }
+</style>
 
-        /* Form Elements */
-        .form-label {
-            color: #566C80; /* Storm */
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
+<div class="quiz-container">
+    <h1>Find Your Curly Hair Routine</h1>
+    <form method="post">
+        {% csrf_token %}
 
-        select {
-            background-color: #F5F5F5; /* Cloud */
-            border: 1px solid #D4B08C; /* Sand */
-            padding: 0.75rem;
-            border-radius: 30px; /* Modern rounded corners */
-            font-size: 1rem;
-            color: #566C80; /* Storm */
-            transition: border-color 0.3s ease;
-        }
-
-        select:focus {
-            border-color: #8CAB9B; /* Sage */
-            outline: none;
-        }
-
-        /* HR (Separator Line) */
-        hr {
-            border: none;
-            border-top: 2px solid #566C80; /* Storm */
-            margin: 30px 0;
-        }
-
-        /* List Items */
-        .list-group-item {
-            background-color: #F5F5F5; /* Cloud */
-            border: 1px solid #D4B08C; /* Sand */
-            margin-bottom: 12px;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="bg-light">
-
-    <!-- Navigation Bar -->
-   <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <!-- Navbar Brand (Aligned Left) -->
-        <a class="navbar-brand" href="#">CurlyHair</a>
-
-        <!-- Navbar Toggler (for mobile view) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar Links (Aligned Right) -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto"> <!-- ms-auto for right alignment -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tried_that' %}">Tried That</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <!-- Quiz Section -->
-        <div class="card shadow-sm mb-4">
-            <div class="card-body">
-                <h1 class="card-title">Hair Type Quiz</h1>
-                <form method="POST" class="mt-4">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+        <div class="question-block">
+            <span class="question-text">How much maintenance do you want to do with your hair?</span>
+            <div class="response-wrapper">
+                {% for choice in form.maintenance.field.choices %}
+                    <label>
+                        <input type="radio" name="maintenance" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
             </div>
         </div>
 
-        <!-- Routine Section -->
-        {% block content %}
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h2 class="card-title">Your Routine!</h2>
-                <ol class="list-group list-group-numbered mt-4">
-                    {% for step in routine_steps %}
-                        <li class="list-group-item">
-                            <label for="{{ step }}" class="form-label">{{ step }}:</label>
-                            <select id="{{ step }}" name="{{ step }}" class="form-select">
-                                {% if categorized_products|get_item:step %}
-                                    {% for product in categorized_products|get_item:step %}
-                                        <option value="{{ product.name }}">{{ product.name }}</option>
-                                    {% endfor %}
-                                {% else %}
-                                    <option>No products available</option>
-                                {% endif %}
-                            </select>
-                        </li>
-                    {% endfor %}
-                </ol>
+        <div class="question-block">
+            <span class="question-text">What's your budget? (per product)</span>
+            <div class="response-wrapper">
+                {% for choice in form.budget.field.choices %}
+                    <label>
+                        <input type="radio" name="budget" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
             </div>
         </div>
-        {% endblock %}
-    </div>
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+        <div class="question-block">
+            <span class="question-text">What’s your curl type?</span>
+            <div class="response-wrapper">
+                {% for choice in form.curl_type.field.choices %}
+                    <label>
+                        <input type="radio" name="curl_type" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">Do you prefer vegan products?</span>
+            <div class="response-wrapper">
+                {% for choice in form.vegan.field.choices %}
+                    <label>
+                        <input type="radio" name="vegan" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">How long is your hair?</span>
+            <div class="response-wrapper">
+                {% for choice in form.hair_length.field.choices %}
+                    <label>
+                        <input type="radio" name="hair_length" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">What’s your scalp condition?</span>
+            <div class="response-wrapper">
+                {% for choice in form.scalp_condition.field.choices %}
+                    <label>
+                        <input type="radio" name="scalp_condition" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">How soon does your hair get oily after washing?</span>
+            <div class="response-wrapper">
+                {% for choice in form.oiliness.field.choices %}
+                    <label>
+                        <input type="radio" name="oiliness" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">What level of hold do you prefer for styling products?</span>
+            <div class="response-wrapper">
+                {% for choice in form.hold.field.choices %}
+                    <label>
+                        <input type="radio" name="hold" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit">Get My Routine</button>
+    </form>
+</div>
+{% endblock %}

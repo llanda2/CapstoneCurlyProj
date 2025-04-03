@@ -1,113 +1,152 @@
-Brand,Name,Category,Price,Curl Pattern,Hair Type,Vegan?,"Weight (L,M,H)",Helpful Areas
-Carol's Daughter,Black Vanilla Shampoo,Shampoo,9.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Medium, Thick",No,M,"Shine, Nourish"
-Maui Moisture,Nourish & Moisture + Coconut Milk Shampoo,Shampoo,6.99,"2A, 2B, 2C, 3A","Thin, Medium",Yes,M,"Shine, Nourish"
-Carol's Daughter,Black Vanilla Condtioner,Conditioner,9.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Medium, Thick",No,L,"Shine, Nourish"
-Maui Moisture,Nourish & Moisture + Coconut Milk Conditioner,Conditioner,6.99,"2A, 2B, 2C, 3A","Thin, Medium",Yes,L,"Shine, Nourish"
-Curls,Blueberry Bliss Reparative Leave In Conditioner,Leave-In,12.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Nourish, Repair"
-Mielle,Pomegranate & Honey Leave-In Conditioner,Leave-In,11.70,"4A, 4B, 4C","Medium, Thick",No,M,"Shine, Nourish, "
-Curlsmith,Bouncy Strength Volume Foam,Mousse/Foam,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Volume, Definition"
-Marc Anthony,Strictly Curl Enhancing Styling Foam,Mousse/Foam,7.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,L,"Volume, Definition"
-Miss Jessie's,Pillow Soft Curls Unisex Lotion,Curl Cream,17.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Nourish
-SheaMoisture,Curl Enhancing Smoothie,Curl Cream,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Nourish, Repar, Shine"
-Aunt Jackie's,Flaxseed Recipes Don't Shrink Elongating Hair Curling Gel,Gel,7.50,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Lengthening, Definition"
-Curlsmith,Hydro Style Flexi-Jelly,Gel,12.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Volume, Definition"
-Not Your Mother's,Defining Cream,Curl Cream,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Shine, Nourish"
-Not Your Mother's,Activating Mousse,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-Not Your Mother's,Leave-In Conditioner,Leave-In,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Nourish
-Not Your Mother's,Sculpting Gel,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-Not Your Mother's,Lasting Definition Flash Freeze Gel,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-Not Your Mother's,Refreshing Foam,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Shampoo,Shampoo,11.99,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish"
-SheaMoisture,100% Virgin Coconut Oil Daily Hydration Shampoo,Shampoo,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydration, Nourish"
-SheaMoisture,100% Virgin Coconut Oil Daily Hydration Conditioner,Conditioner,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydration, Nourish"
-SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Conditioner,Conditioner,11.99,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish"
-SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Multi-Action Leave-In,Leave-In,11.49,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish"
-SheaMoisture,Raw Shea Butter Deep Moisturizing Leave-In Conditioner,Leave-In,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Nourish"
-SheaMoisture,Coconut & Hibiscus Frizz-Free Curl Moussee,Mousse/Foam,11.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Definition, Nourish"
-SheaMoisture,Coconut & Hibiscus Curling Gel Souffle,Gel,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Shine, Definition"
-Maui Moisture,Flexible Hold + Coconut Milk Curl Foam Mousse,Mousse/Foam,10.90,"2A, 2B, 2C, 3A","Thin, Medium",No,L,"Volume, Definition"
-CurlSmith,Curl Quenching Conditioning Wash,Shampoo,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Gentle, Nourish"
-CurlSmith,Essential Moisture Conditioner,Conditioner,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Gentle, Nourish"
-CurlSmith,Hold Me Softly Style Balm,Gel,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition
-CurlSmith,In-Shower Style Fixer,Gel,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition
-InnerSense,Hydrating Cream Hairbath,Shampoo,30.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-InnerSense,Hydrating Cream Conditioner,Conditioner,30.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-InnerSense,I Create Hold,Gel,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Definition
-InnerSense,Sweet Spirit Leave In Conditioner,Leave-In,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-InnerSense,I Create Shine,Oil,40.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Shine
-It's A 10 ,Miracle Leave-In Product,Leave-In,40.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydration, Repair"
-Fenty Beauty,The Homecurl Curl-Defining Cream,Curl Cream,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Hydrating, Nourish"
-Fenty Beauty,The Rich One Moisture Repair Shampoo,Shampoo,29.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish, Repair"
-Fenty Beauty,The Rich One Moisture Repair Conditioner,Conditioner,29.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish, Repair"
-Carol's Daughter,Goddess Strength Divine Strength Leave In Cream With Castor Oil,Leave-In,10.90,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish"
-Carol's Daughter,Black Vanilla Moisture & Hold Jelly,Gel,13.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,M,Definition
-Carol's Daughter,Goddess Strength 7 Oil Blend Scalp & Hair Oil,Oil,11.97,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish"
-Pattern,Hydration Shampoo,Shampoo,21.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Pattern,Intensive Conditioner,Conditioner,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-Pattern,Leave-In Conditioner,Leave-In,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-Pattern,Styling Cream,Curl Cream,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",Yes,M,Definition
-Pattern,Strong Hold Gel,Gel,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Definition
-Pattern,Jojoba Oil Blend,Oil,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-Ouai,Hydrating Curl Cream,Curl Cream,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-Ouai,Medium Hair Shampoo,Shampoo,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-Ouai,Medium Hair Conditioner,Conditioner,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-Aussie,Instant Freeze Mousse,Mousse/Foam,3.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-Aussie,Miracle Curls Frizz Free Curl Cream,Curl Cream,4.99,"3A, 3B, 3C","Medium, Thick",No,L,"Hydrating, Nourish"
-Gisou,Gisou Honey Infused Hair Oil,Oil,25.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Shine, Nourish"
-Hask,Argan Oil Repairing Shine,Oil,3.75,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish, Repair"
-Rizos Curls,Hydrating Shampoo,Shampoo,22.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish"
-Rizos Curls,Deep Conditioner,Conditioner,22.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish"
-Not Your Mother's,Defining Shampoo,Shampoo,8.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Definition
-Not Your Mother's,Defining Conditioner,Conditioner,8.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Definition
-Marc Anthony,Strictly Curls Curl Envy,Curl Cream,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Uncle Funky's Daughter,Magic Curl Simulator,Curl Cream,22.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-Pantene,Pro-V Curl Sculpting Gel,Gel,6.49,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Definition
-Maui Moisture,Coconut Oil Curl Quench Smoothie,Curl Cream,8.69,"3B, 3C","Medium, Thick",Yes,M,"Hydrating, Nourish"
-As I Am,Curling Jelly Definer,Gel,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",Yes,M,Definition
-Curls,Creme Brule Whipped Curl Cream,Curl Cream,14.59,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Hydrating, Nourish"
-Herbal Essences,Apricot Oil Sulfate Free Curl Define Shampoo,Shampoo,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydrating, Nourish"
-Herbal Essences,Apricot Oil Sulfate Free Curl Define Conditioner,Conditioner,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydrating, Nourish"
-Aussie,Miracle Moist Intense Hydrarion Oil,Oil,5.29,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-Miss Jessie's,Don't Want No Suds,Shampoo,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish"
-Miss Jessie's,Soften Me Up,Shampoo,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish"
-Afro Love,Oil Blend Leave-In,Oil,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish"
-Olaplex,Bonding Oil,Oil,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-African Pride,Moisture Miracle 5 Essential Hair Oils,Oil,9.98,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-TWIST,Curl Reign Multi-use Miracle Oil,Oil,4.72,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish"
-The Doux,Mousse Def Texture Foam,Mousse/Foam,15.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-Dove,STYLE+care Curls Defining Mousse,Mousse/Foam,7.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,L,Definition
-Dippity Do,Girls with Curls,Gel,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Definition
-Giovanni,Direct Leave In Weightless Moisture Conditioner,Leave-In,9.88,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish"
-Kinky-Curly,Knot Today Leave-In,Leave-In,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Aunt Jackie's,Curls and Coils Quench Moisture Intensive Leave-In Hair Conditioner,Leave-In,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Marc Anthony,"Leave-In Conditioner, Strictly Curls",Leave-In,7.67,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Briogeo,Curl Charisma Rice Amino + Avocado Leave-In Defining Crème,Leave-In,24.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Olaplex,"Bond Smoother, Leave-In Styling Hair Cream Treatment",Leave-In,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Aussie,Miracle Curls with Coconut Oil,Leave-In,5.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Carol's Daughter,Coco Creme Coil Enhancing Moisture Butter,Curl Cream,11.97,"4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish"
-Mielle,Pomegranate & Honey Sculpting Custard,Curl Cream,9.50,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,L,"Hydrating, Nourish"
-Aunt Jackie's,"Curl La La, Lightweight Curl Defining Custard",Curl Cream,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,L,"Hydrating, Nourish"
-African Pride,Moisture Miracle Coconut Oil & Baobab Oil Leave-In Hair Cream,Leave-In,5.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-As I Am,Double Butter Cream,Leave-In,9.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish"
-Creme Of Nature,Curl Cream for Curly Hair,Curl Cream,9.22,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Mizani,True Textures Curl Defining Lotion,Curl Cream,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish"
-Aussie,Miracle Coils Shaping Jelly,Gel,18.99,"4A, 4B, 4C","Medium, Thick",No,H,Definition
-As I Am,Long and Luxe Curl Enhancing Smoothie,Curl Cream,10.95,"4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish"
-Moisture I.T. ,Leave-In Conditioner,Leave-In,15.99,"4A, 4B, 4C","Medium, Thick",No,H,Hydration
-Aunt Jackie's,Grapeseed Style and Shine Recipes Ice Curls Glossy Curling Jelly,Gel,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Hydration
-Aunt Jackie's,Twist Gel with Extra Firm Hold,Gel,9.68,"4A, 4B, 4C","Medium, Thick",No,H,"Strengthening, Lengthening, Definition"
-Imbue,Coil Awakening Sulphate Free Cream Cleanser Shampoo,Shampoo,9.99,"4A, 4B, 4C","Medium, Thick",Yes,H,"Hydrating, Nourish"
-Aunt Jackie's,Curls and Coils Oh So Clean Deep Moisturizing and Softening Hair Shampoo for Natural Curls,Shampoo,10.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Hydration
-Love Ur Curls,LUS Brands All-in-One Styler for Kinky-Coily Hair,Curl Cream,24.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Strengthening, Repair"
-Qhemet Biologics Amla & Olive,Heavy Cream,Curl Cream,21.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Strengthening, Repair"
-Aveda,Be Curly Advanced Coil Definer Gel,Gel,46.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,Definition
-Pantene,Curl Defining Pudding,Curl Cream,10.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,Definition
-Lottabody,Wrap Me Foaming Mousse,Mousse/Foam,5.75,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Definition, Shine"
-Cake Beauty,The Curl Friend,Curl Cream,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Shine, Hydration"
-Pacifica,Pineapple Swirl Curl Defining Cream,Curl Cream,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydration, Shine, "
-Hairtage,Ahead of the Curl Cream,Curl Cream,8.94,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,H,Definition
-Cake Beauty,The Curl Whip,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition
-Umberto Giannini,Curl Jelly ,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Shine"
-Mielle,Coil Sculpting Custard,Curl Cream,9.50,"4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydration"
-Miss Jessie's,Coily Custard,Curl Cream,16.79,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition
-COLOR WOW,Dream Coat for Curly Hair,Curl Cream,24.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Hydration"
+Brand,Name,Category,Price,Curl Pattern,Hair Type,Vegan?,"Weight (L,M,H)",Growth Areas,Sulfate Free?,Hold Level
+Carol's Daughter,Black Vanilla Shampoo,Shampoo,9.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Medium, Thick",No,M,"Shine, Nourish",Yes,NULL
+Maui Moisture,Nourish & Moisture + Coconut Milk Shampoo,Shampoo,6.99,"2A, 2B, 2C, 3A","Thin, Medium",Yes,M,"Shine, Nourish",Yes,NULL
+Carol's Daughter,Black Vanilla Condtioner,Conditioner,9.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Medium, Thick",No,L,"Shine, Nourish",Yes,NULL
+Maui Moisture,Nourish & Moisture + Coconut Milk Conditioner,Conditioner,6.99,"2A, 2B, 2C, 3A","Thin, Medium",Yes,L,"Shine, Nourish",Yes,NULL
+Curls,Blueberry Bliss Reparative Leave In Conditioner,Leave-In,12.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Nourish, Repair",Yes,NULL
+Mielle,Pomegranate & Honey Leave-In Conditioner,Leave-In,11.70,"4A, 4B, 4C","Medium, Thick",No,M,"Shine, Nourish, ",No,NULL
+Curlsmith,Bouncy Strength Volume Foam,Mousse/Foam,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Volume, Definition",Yes,Light
+Marc Anthony,Strictly Curl Enhancing Styling Foam,Mousse/Foam,7.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,L,"Volume, Definition",Yes,Medium
+Miss Jessie's,Pillow Soft Curls Unisex Lotion,Curl Cream,17.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Nourish,Yes,NULL
+SheaMoisture,Curl Enhancing Smoothie,Curl Cream,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Nourish, Repar, Shine",No,NULL
+Aunt Jackie's,Flaxseed Recipes Don't Shrink Elongating Hair Curling Gel,Gel,7.50,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Lengthening, Definition",Yes,Medium
+Curlsmith,Hydro Style Flexi-Jelly,Gel,12.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Volume, Definition",Yes,Medium
+Not Your Mother's,Defining Cream,Curl Cream,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Shine, Nourish",Yes,NULL
+Not Your Mother's,Activating Mousse,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,Medium
+Not Your Mother's,Leave-In Conditioner,Leave-In,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Nourish,Yes,NULL
+Not Your Mother's,Sculpting Gel,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,Medium
+Not Your Mother's,Lasting Definition Flash Freeze Gel,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,Strong
+Not Your Mother's,Refreshing Foam,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,Light
+SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Shampoo,Shampoo,11.99,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish",Yes,NULL
+SheaMoisture,100% Virgin Coconut Oil Daily Hydration Shampoo,Shampoo,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydration, Nourish",Yes,NULL
+SheaMoisture,100% Virgin Coconut Oil Daily Hydration Conditioner,Conditioner,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydration, Nourish",Yes,NULL
+SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Conditioner,Conditioner,11.99,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish",Yes,NULL
+SheaMoisture,Manuka Honey & Yogurt Hydrate & Repair Multi-Action Leave-In,Leave-In,11.49,"2A, 2B, 2C, 3A, 3B, 3C","Thin, Medium, Thick",No,M,"Hydration, Repair, Nourish",Yes,NULL
+SheaMoisture,Raw Shea Butter Deep Moisturizing Leave-In Conditioner,Leave-In,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Nourish",Yes,NULL
+SheaMoisture,Coconut & Hibiscus Frizz-Free Curl Moussee,Mousse/Foam,11.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Definition, Nourish",Yes,Strong
+SheaMoisture,Coconut & Hibiscus Curling Gel Souffle,Gel,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Shine, Definition",Yes,Strong
+Maui Moisture,Flexible Hold + Coconut Milk Curl Foam Mousse,Mousse/Foam,10.90,"2A, 2B, 2C, 3A","Thin, Medium",No,L,"Volume, Definition",Yes,Medium
+CurlSmith,Curl Quenching Conditioning Wash,Shampoo,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Gentle, Nourish",Yes,NULL
+CurlSmith,Essential Moisture Conditioner,Conditioner,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Gentle, Nourish",Yes,NULL
+CurlSmith,Hold Me Softly Style Balm,Gel,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition,Yes,Light
+CurlSmith,In-Shower Style Fixer,Gel,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition,Yes,Strong
+InnerSense,Hydrating Cream Hairbath,Shampoo,30.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+InnerSense,Hydrating Cream Conditioner,Conditioner,30.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+InnerSense,I Create Hold,Gel,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Definition,Yes,Medium
+InnerSense,Sweet Spirit Leave In Conditioner,Leave-In,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+InnerSense,I Create Shine,Oil,40.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Shine,Yes,NULL
+It's A 10 ,Miracle Leave-In Product,Leave-In,40.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydration, Repair",Yes,NULL
+Fenty Beauty,The Homecurl Curl-Defining Cream,Curl Cream,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Hydrating, Nourish",Yes,NULL
+Fenty Beauty,The Rich One Moisture Repair Shampoo,Shampoo,29.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish, Repair",Yes,NULL
+Fenty Beauty,The Rich One Moisture Repair Conditioner,Conditioner,29.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish, Repair",Yes,NULL
+Carol's Daughter,Goddess Strength Divine Strength Leave In Cream With Castor Oil,Leave-In,10.90,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish",No,NULL
+Carol's Daughter,Black Vanilla Moisture & Hold Jelly,Gel,13.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,M,Definition,No,Medium
+Carol's Daughter,Goddess Strength 7 Oil Blend Scalp & Hair Oil,Oil,11.97,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish",No,NULL
+Pattern,Hydration Shampoo,Shampoo,21.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Pattern,Intensive Conditioner,Conditioner,28.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Pattern,Leave-In Conditioner,Leave-In,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Pattern,Styling Cream,Curl Cream,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",Yes,M,Definition,No,NULL
+Pattern,Strong Hold Gel,Gel,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Definition,No,Strong
+Pattern,Jojoba Oil Blend,Oil,28.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Ouai,Hydrating Curl Cream,Curl Cream,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Ouai,Medium Hair Shampoo,Shampoo,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Ouai,Medium Hair Conditioner,Conditioner,32.00,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Aussie,Instant Freeze Mousse,Mousse/Foam,3.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,No,Medium
+Aussie,Miracle Curls Frizz Free Curl Cream,Curl Cream,4.99,"3A, 3B, 3C","Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Gisou,Gisou Honey Infused Hair Oil,Oil,25.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Shine, Nourish",Yes,NULL
+Hask,Argan Oil Repairing Shine,Oil,3.75,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish, Repair",Yes,NULL
+Rizos Curls,Hydrating Shampoo,Shampoo,22.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish",No,NULL
+Rizos Curls,Deep Conditioner,Conditioner,22.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish",No,NULL
+Not Your Mother's,Defining Shampoo,Shampoo,8.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Definition,Yes,NULL
+Not Your Mother's,Defining Conditioner,Conditioner,8.50,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Definition,Yes,NULL
+Marc Anthony,Strictly Curls Curl Envy,Curl Cream,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Uncle Funky's Daughter,Magic Curl Simulator,Curl Cream,22.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+Pantene,Pro-V Curl Sculpting Gel,Gel,6.49,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Definition,No,Medium
+Maui Moisture,Coconut Oil Curl Quench Smoothie,Curl Cream,8.69,"3B, 3C","Medium, Thick",Yes,M,"Hydrating, Nourish",Yes,NULL
+As I Am,Curling Jelly Definer,Gel,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",Yes,M,Definition,Yes,Medium
+Curls,Creme Brule Whipped Curl Cream,Curl Cream,14.59,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Hydrating, Nourish",Yes,NULL
+Herbal Essences,Apricot Oil Sulfate Free Curl Define Shampoo,Shampoo,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydrating, Nourish",Yes,NULL
+Herbal Essences,Apricot Oil Sulfate Free Curl Define Conditioner,Conditioner,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydrating, Nourish",Yes,NULL
+Aussie,Miracle Moist Intense Hydrarion Oil,Oil,5.29,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+Miss Jessie's,Don't Want No Suds,Shampoo,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish",Yes,NULL
+Miss Jessie's,Soften Me Up,Shampoo,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Nourish",Yes,NULL
+Afro Love,Oil Blend Leave-In,Oil,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish",Yes,NULL
+Olaplex,Bonding Oil,Oil,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+African Pride,Moisture Miracle 5 Essential Hair Oils,Oil,9.98,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+TWIST,Curl Reign Multi-use Miracle Oil,Oil,4.72,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Nourish",No,NULL
+The Doux,Mousse Def Texture Foam,Mousse/Foam,15.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,Strong
+Dove,STYLE+care Curls Defining Mousse,Mousse/Foam,7.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A","Thin, Medium, Thick",No,L,Definition,No,Light
+Dippity Do,Girls with Curls,Gel,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Definition,Yes,Medium
+Giovanni,Direct Leave In Weightless Moisture Conditioner,Leave-In,9.88,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,"Hydrating, Nourish",Yes,NULL
+Kinky-Curly,Knot Today Leave-In,Leave-In,14.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Aunt Jackie's,Curls and Coils Quench Moisture Intensive Leave-In Hair Conditioner,Leave-In,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Marc Anthony,"Leave-In Conditioner, Strictly Curls",Leave-In,7.67,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Briogeo,Curl Charisma Rice Amino + Avocado Leave-In Defining Crème,Leave-In,24.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Olaplex,"Bond Smoother, Leave-In Styling Hair Cream Treatment",Leave-In,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Aussie,Miracle Curls with Coconut Oil,Leave-In,5.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Carol's Daughter,Coco Creme Coil Enhancing Moisture Butter,Curl Cream,11.97,"4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish",No,NULL
+Mielle,Pomegranate & Honey Sculpting Custard,Curl Cream,9.50,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Aunt Jackie's,"Curl La La, Lightweight Curl Defining Custard",Curl Cream,12.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+African Pride,Moisture Miracle Coconut Oil & Baobab Oil Leave-In Hair Cream,Leave-In,5.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+As I Am,Double Butter Cream,Leave-In,9.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Hydrating, Nourish",Yes,NULL
+Creme Of Nature,Curl Cream for Curly Hair,Curl Cream,9.22,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",Yes,NULL
+Mizani,True Textures Curl Defining Lotion,Curl Cream,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Hydrating, Nourish",No,NULL
+Aussie,Miracle Coils Shaping Jelly,Gel,18.99,"4A, 4B, 4C","Medium, Thick",No,H,Definition,Yes,Medium
+As I Am,Long and Luxe Curl Enhancing Smoothie,Curl Cream,10.95,"4A, 4B, 4C","Medium, Thick",No,H,"Hydrating, Nourish",Yes,NULL
+Nudred Moisture I.T. ,Leave-In Conditioner,Leave-In,15.99,"4A, 4B, 4C","Medium, Thick",No,H,Hydration,Yes,NULL
+Aunt Jackie's,Grapeseed Style and Shine Recipes Ice Curls Glossy Curling Jelly,Gel,13.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Hydration,No,Medium
+Aunt Jackie's,Twist Gel with Extra Firm Hold,Gel,9.68,"4A, 4B, 4C","Medium, Thick",No,H,"Strengthening, Lengthening, Definition",No,Strong
+Imbue,Coil Awakening Sulphate Free Cream Cleanser Shampoo,Shampoo,9.99,"4A, 4B, 4C","Medium, Thick",Yes,H,"Hydrating, Nourish",No,NULL
+Aunt Jackie's,Curls and Coils Oh So Clean Deep Moisturizing and Softening Hair Shampoo for Natural Curls,Shampoo,10.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,Hydration,No,NULL
+Love Ur Curls,LUS Brands All-in-One Styler for Kinky-Coily Hair,Curl Cream,24.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Strengthening, Repair",Yes,NULL
+Qhemet Biologics Amla & Olive,Heavy Cream,Curl Cream,21.00,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,"Hydration, Strengthening, Repair",No,NULL
+Aveda,Be Curly Advanced Coil Definer Gel,Gel,46.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,Definition,Yes,Strong
+Pantene,Curl Defining Pudding,Curl Cream,10.99,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,H,Definition,Yes,NULL
+Lottabody,Wrap Me Foaming Mousse,Mousse/Foam,5.75,"3A, 3B, 3C, 4A, 4B, 4C","Medium, Thick",No,M,"Definition, Shine",No,Medium
+Cake Beauty,The Curl Friend,Curl Cream,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Shine, Hydration",Yes,NULL
+Pacifica,Pineapple Swirl Curl Defining Cream,Curl Cream,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydration, Shine, ",No,NULL
+Hairtage,Ahead of the Curl Cream,Curl Cream,8.94,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,H,Definition,Yes,NULL
+Cake Beauty,The Curl Whip,Mousse/Foam,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definition,Yes,Medium
+Umberto Giannini,Scrunching Curl Jelly ,Gel,10.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Definition, Shine",Yes,Strong
+Mielle,Coil Sculpting Custard,Curl Cream,9.50,"4A, 4B, 4C","Thin, Medium, Thick",No,M,"Definition, Hydration",Yes,NULL
+Miss Jessie's,Coily Custard,Curl Cream,16.79,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,Definition,Yes,NULL
+COLOR WOW,Dream Coat for Curly Hair,Curl Cream,24.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,L,"Definition, Hydration",Yes,NULL
+Aveda ,Rosemary Mint Purifying Shampoo,Clarifying Shampoo,21.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium",No,M,Clarifying,No,NULL
+Bb,Sunday Clarifying Shampoo,Clarifying Shampoo,35.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Clarifying,No,NULL
+L'Oreal,Clarify Sulfate Free Shampoo,Clarifying Shampoo,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Clarifying,Yes,NULL
+Kristen Ess,Deep Clean Clarifying Shampoo,Clarifying Shampoo,11.97,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Clarifying,No,NULL
+Ouai ,Detox Shampoo,Clarifying Shampoo,32.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Clarifying,No,NULL
+Dove,Clarifying Shampoo Scalp + Hair Therapy,Clarifying Shampoo,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Clarifying,Yes,NULL
+Maui Moisture,Scalp Care Clarifying Shampoo,Clarifying Shampoo,11.09,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,Clarifying,Yes,NULL
+Olaplex,"No. 4C Bond Maintenance Clarifying Shampoo,",Clarifying Shampoo,32.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Clarifying,Yes,NULL
+Aunt Jackie's,Power Wash Intense Moisture Clarifying Hair Shampoo,Clarifying Shampoo,13.19,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Clarifying,No,NULL
+SheaMoisture,Intensive Hydration Hair Masque Manuka Honey & Mafura Oil,Hair Masks,12.70,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,H,"Damage Control, Hydrating, Conditioning, Moisturizing",Yes,NULL
+Arvazallia,Hydrating Argan Oil Hair Mask and Deep Conditioner,Hair Masks,18.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+Maree,Keratin Hair Mask,Hair Masks,24.95,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Damage Control, Hydrating, Conditioning, Moisturizing",Yes,NULL
+Mielle,Rosemary Mint Strengthening Hair Masque,Hair Masks,9.97,"3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+Dove ,Intensive Repair Hair Masque,Hair Masks,9.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",No,NULL
+amika,Soulfood Nourishing Mask,Hair Masks,34.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Nourish, Conditioning",Yes,NULL
+Garnier Frutis,Plumping Treatment 3-in-1,Hair Masks,7.10,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium",No,L,"Hydrating, Conditioning, Moisturizing",No,NULL
+Love and Beauty and Planet,Hair Maks,Hair Masks,8.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+amika,curl corps defining cream,Curl Cream,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Moisturizing, Definition",Yes,NULL
+amika,curl corps enhanching gel,Gel,30.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,L,Definiton,Yes,Light
+amika,hydro rush intense moisture shampoo,Shampoo,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+amika,"hydro rush
+intense moisture conditioner for dry hair",Conditioner,26.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+amika,"water sign
+hydrating hair oil for dry hair",Oil,32.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,H,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+amika,"hydro rush
+intense moisture leave-in conditioner",Leave-In,29.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+Moroccanoil,Moroccanoil Treatment Original,Oil,48.00,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",No,M,Nourishing,Yes,NULL
+California Naturals,Classic Coconut Shampoo,Shampoo,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+California Naturals,Classic Coconut Conditioner,Conditioner,11.99,"2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B, 4C","Thin, Medium, Thick",Yes,M,"Hydrating, Conditioning, Moisturizing",Yes,NULL
+,,,,,,,,,,
+kerastase,,,,,,,,,,
+melanin,,,,,,,,,,
+eva nyc,,,,,,,,,,
+ouidad,,,,,,,,,,
+bumble and bumble,,,,,,,,,,
+silk elements,,,,,,,,,,
+the Doux,,,,,,,,,,
+texture id,,,,,,,,,,
+tgin,,,,,,,,,,

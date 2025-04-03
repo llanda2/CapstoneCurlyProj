@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Curly Hair Project{% endblock %}</title>
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Archivo+Narrow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* General Styles */
         body {
-            background-color: #D4B08C; /* Sand */
-            color: #F5F5F5; /* Cloud */
-            font-family: 'Roboto', sans-serif; /* More refined font */
+            background-color: #C6D7E3; /* Misty Blue */
+            color: #2A4F75; /* Deep Blue */
+            font-family: 'Archivo Narrow', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.5;
@@ -18,7 +21,7 @@
 
         /* Navbar */
         .navbar {
-            background-color: #566C80; /* Storm */
+            background-color: #2A4F75; /* Deep Blue */
             padding: 18px 30px;
             display: flex;
             justify-content: space-between;
@@ -27,32 +30,44 @@
         }
 
         .navbar a {
-            color: #D4B08C; /* Sand */
+            color: #A3BDD1; /* Powder Blue */
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
-            transition: color 0.3s ease;
+            font-family: 'Tenor Sans', sans-serif;
+            padding: 10px 15px; /* Added padding for better clickability */
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .navbar a:hover {
-            color: #F5F5F5; /* Cloud for contrast */
-        }
-
-        /* Main Container */
-        .container {
-            width: 95%;
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #8CAB9B; /* Sage */
-            border-radius: 6px; /* Slightly more subtle rounded corners */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #ffffff; /* White for better contrast */
+            background-color: rgba(255, 255, 255, 0.2); /* Slight highlight effect */
+            border-radius: 5px;
         }
 
         /* Headers */
         h1, h2 {
-            font-weight: 600;
-            color: #F5F5F5; /* Cloud */
+            font-family: 'Tenor Sans', sans-serif;
+            font-weight: 400;
+            color: #2A4F75;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-size: 5.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Headings */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 3rem; /* Adjusted for smaller screens */
+            }
+        }
+
+        .card-title {
+            font-family: 'Tenor Sans', sans-serif;
+            font-weight: 400;
+            color: #5785A7; /* Slate blue */
             text-align: center;
             margin-bottom: 20px;
             letter-spacing: 1px;
@@ -60,78 +75,41 @@
 
         /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            margin: 12px 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 4px; /* Subtle corner radius */
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-primary {
-            background-color: #B97375; /* Terra */
-            color: #F5F5F5; /* Cloud */
-        }
-
-        .btn-primary:hover {
-            background-color: #9B5E5E; /* Darker Terra */
-            transform: translateY(-2px); /* Slight hover effect */
-        }
-
-        .btn-success {
-            background-color: #566C80; /* Storm */
+            font-family: 'Tenor Sans', sans-serif;
+            background-color: #2A4F75; /* Deep Blue */
             color: white;
-        }
-
-        .btn-success:hover {
-            background-color: #455465; /* Darker Storm */
-            transform: translateY(-2px); /* Slight hover effect */
-        }
-
-        /* Cards */
-        .card {
-            background-color: #B97375; /* Terra */
-            padding: 22px;
-            border-radius: 6px; /* Subtle corner radius */
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        /* List Items */
-        .list-group {
-            padding: 0;
-            list-style: none;
-        }
-
-        .list-group-item {
-            padding: 12px;
-            background-color: #D4B08C; /* Sand */
-            border-bottom: 1px solid #8CAB9B; /* Sage */
-            color: #566C80; /* Storm */
-            font-weight: 500;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
             transition: background-color 0.3s ease;
         }
 
-        .list-group-item:hover {
-            background-color: #B8A38D; /* Subtle hover effect */
+        .btn:hover {
+            background-color: #1d3b5b; /* Slightly darker shade on hover */
         }
 
-        .list-group-item:last-child {
-            border-bottom: none;
+        /* Main Content Container */
+        .container {
+            max-width: 90%;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6); /* Light background to contrast */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Container */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+                padding: 15px;
+            }
         }
     </style>
 </head>
-
 <body>
-
     <!-- Navigation Bar -->
     <div class="navbar">
         <a href="{% url 'home' %}">CurlyHair</a>
@@ -142,6 +120,5 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-
 </body>
 </html>
