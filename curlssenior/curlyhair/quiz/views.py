@@ -130,31 +130,65 @@ def hair_type_quiz(request):
                     oil_products = oil_products.filter(price__gt=25.00)
 
                 if oil_products.exists():
-                    special_recommendations["Scalp Oil"] = list(oil_products)
+                    special_recommendations["Scalp Oil (Use Daily)"] = list(oil_products)
                     print(f"Found {oil_products.count()} oil products for dry scalp")
 
-            # For oily or flaky scalp, recommend hair masks; otherwise, recommend oils
-            elif scalp_condition and scalp_condition.lower() in ['oily', 'flaky']:
-                recommended_category = "Hair Mask" if scalp_condition.lower() == "flaky" else "Oil"
+            # For flaky scalp, recommend hair mask (weekly) OR oil (daily)
+            elif scalp_condition and scalp_condition.lower() == 'flaky':
+                # Try hair masks first
+                hair_mask_products = HairProduct.objects.filter(
+                    category__icontains="Hair Mask",
+                    vegan=vegan,
+                )
 
-                recommended_products = HairProduct.objects.filter(
-                    category__icontains=recommended_category,
-                    vegan=vegan,  # Maintain vegan preference
+                # Apply price filtering to hair masks
+                if price_range == "$":
+                    hair_mask_products = hair_mask_products.filter(price__lte=12.00)
+                elif price_range == "$$":
+                    hair_mask_products = hair_mask_products.filter(price__gt=12.00, price__lte=25.00)
+                else:
+                    hair_mask_products = hair_mask_products.filter(price__gt=25.00)
+
+                if hair_mask_products.exists():
+                    special_recommendations["Hair Mask (Use Weekly)"] = list(hair_mask_products)
+                    print(f"Found {hair_mask_products.count()} hair mask products for flaky scalp")
+                else:
+                    # Fall back to oils if no hair masks found
+                    oil_products = HairProduct.objects.filter(
+                        category__icontains="Oil",
+                        vegan=vegan,
+                    )
+
+                    # Apply price filtering to oils
+                    if price_range == "$":
+                        oil_products = oil_products.filter(price__lte=12.00)
+                    elif price_range == "$$":
+                        oil_products = oil_products.filter(price__gt=12.00, price__lte=25.00)
+                    else:
+                        oil_products = oil_products.filter(price__gt=25.00)
+
+                    if oil_products.exists():
+                        special_recommendations["Scalp Oil (Use Daily)"] = list(oil_products)
+                        print(f"Found {oil_products.count()} oil products for flaky scalp")
+
+            # For oily scalp, recommend clarifying shampoo
+            elif scalp_condition and scalp_condition.lower() == 'oily':
+                clarifying_shampoo = HairProduct.objects.filter(
+                    category__icontains="Clarifying Shampoo",
+                    vegan=vegan,
                 )
 
                 # Apply price filtering
                 if price_range == "$":
-                    recommended_products = recommended_products.filter(price__lte=12.00)
+                    clarifying_shampoo = clarifying_shampoo.filter(price__lte=12.00)
                 elif price_range == "$$":
-                    recommended_products = recommended_products.filter(price__gt=12.00, price__lte=25.00)
+                    clarifying_shampoo = clarifying_shampoo.filter(price__gt=12.00, price__lte=25.00)
                 else:
-                    recommended_products = recommended_products.filter(price__gt=25.00)
+                    clarifying_shampoo = clarifying_shampoo.filter(price__gt=25.00)
 
-                if recommended_products.exists():
-                    special_recommendations[recommended_category] = list(recommended_products)
-                    print(
-                        f"Found {recommended_products.count()} {recommended_category} products for {scalp_condition} scalp")
-
+                if clarifying_shampoo.exists():
+                    special_recommendations["Clarifying Shampoo"] = list(clarifying_shampoo)
+                    print(f"Found {clarifying_shampoo.count()} clarifying shampoo products for oily scalp")
             for step in steps_needed:
                 # Special handling for Mousse/Gel
                 # For the product categorization section, update this part:
