@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
 {% block content %}
 <style>
     .quiz-container {
@@ -119,16 +121,23 @@
         </div>
 
         <div class="question-block">
-            <span class="question-text">What’s your curl type?</span>
-            <div class="response-wrapper">
-                {% for choice in form.curl_type.field.choices %}
-                    <label>
-                        <input type="radio" name="curl_type" value="{{ choice.0 }}" required>
-                        <span class="response-option">{{ choice.1 }}</span>
-                    </label>
-                {% endfor %}
+    <label>What is your curl type?</label>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+        {% for value, label in form.curl_type.field.choices %}
+    {% with filename=curl_type_image_map|get_item:value|default:value %}
+        <label style="cursor: pointer; text-align: center;">
+            <input type="radio" name="{{ form.curl_type.name }}" value="{{ value }}" style="display: none;" required>
+            <img src="{% static 'images/curlPattern/' %}{{ filename }}" alt="{{ label }}"
+                 style="width: 80px; height: auto; border: 2px solid transparent; border-radius: 8px; transition: 0.3s; margin-bottom: 5px;">
+            <div style="color: #2A4F75; font-weight: bold; font-family: 'Tenor Sans', sans-serif; font-size: 0.9rem;">
+                {{ label }}
             </div>
-        </div>
+        </label>
+    {% endwith %}
+{% endfor %}
+
+    </div>
+</div>
 
         <div class="question-block">
             <span class="question-text">Do you prefer vegan products?</span>

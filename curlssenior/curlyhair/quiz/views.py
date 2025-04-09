@@ -218,10 +218,28 @@ def hair_type_quiz(request):
                 'scalp_condition': scalp_condition,  # Pass this to the template
             })
 
+
     else:
+
         form = HairQuizForm()
 
-    return render(request, 'quiz/hair_type_quiz.html', {'form': form})
+    curl_type_image_map = {
+        "2A": "TwoA.png",
+        "2B": "TwoB.png",
+        "2C": "TwoC.png",
+        "3A": "ThreeA.png",
+        "3B": "ThreeB.png",
+        "3C": "ThreeC.png",
+        "4A": "FourA.png",
+        "4B": "FourB.png",
+        "4C": "FourC.png",
+    }
+    return render(request, 'quiz/hair_type_quiz.html', {
+        'form': form,
+        'curl_type_image_map': curl_type_image_map,
+    })
+
+
 # Quiz view
 def quiz(request):
     if request.method == 'POST':
