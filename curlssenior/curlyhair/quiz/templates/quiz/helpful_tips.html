@@ -1,105 +1,244 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Helpful Tips & Tools - Curly Hair Project{% endblock %}
-
 {% block content %}
 <style>
-    .helpful-container {
-        max-width: 900px;
+    .accordion-container {
+        max-width: 800px;
         margin: 0 auto;
-        padding: 30px;
+        padding: 20px;
         background-color: #C6D7E3;
         border-radius: 10px;
-        color: #2A4F75;
-        font-family: 'Archivo Narrow', sans-serif;
     }
 
-    .section-title {
-        font-family: 'Tenor Sans', sans-serif;
-        font-size: 2.5rem;
-        text-align: center;
-        margin-bottom: 20px;
-        color: #2A4F75;
+    h1 {
+    text-align: center;
+    color: #2A4F75;
+    font-family: 'Tenor Sans', sans-serif;
+    margin-bottom: 20px;
+    font-size: 2.8rem; /* main title size */
+}
+
+h2 {
+    text-align: left;
+    color: #2A4F75;
+    font-family: 'Tenor Sans', sans-serif;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.8rem; /* section headings slightly smaller */
+    border-bottom: 2px solid #2A4F75;
+    padding-bottom: 5px;
+}
+
+
+    .accordion-item {
+        background-color: #fff;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
     }
 
-    .tool-item {
-        margin-bottom: 20px;
-        background: #A3BDD1;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .tool-item h3 {
-        font-family: 'Tenor Sans', sans-serif;
-        color: #2A4F75;
-        margin-bottom: 8px;
-    }
-
-    .helpful-links {
-        margin-top: 30px;
-    }
-
-    .helpful-links a {
-        display: block;
-        margin-bottom: 10px;
-        color: #2A4F75;
+    .accordion-header {
+        padding: 15px 20px;
+        cursor: pointer;
+        background-color: #2A4F75;
+        color: #fff;
         font-weight: bold;
-        text-decoration: none;
+        font-family: 'Tenor Sans', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .helpful-links a:hover {
+    .accordion-header:hover {
+        background-color: #3A6A90;
+    }
+
+    .accordion-content {
+        padding: 15px 20px;
+        display: none;
+        color: #2A4F75;
+        background-color: #F0F6FA;
+    }
+
+    .accordion-item.active .accordion-content {
+        display: block;
+    }
+
+    .accordion-icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+    }
+
+    .accordion-item.active .accordion-icon {
+        transform: rotate(90deg);
+    }
+
+    a {
+        color: #2A4F75;
         text-decoration: underline;
+    }
+
+    a:hover {
+        text-decoration: none;
     }
 </style>
 
-<div class="helpful-container">
-    <h1 class="section-title">Helpful Tips & Tools</h1>
+<div class="accordion-container">
+    <h1>Helpful Tips & FAQs</h1>
 
-    {% comment %} Tools Section {% endcomment %}
-    <div class="tools-section">
-        <div class="tool-item">
-            <h3>Wide-Tooth Comb</h3>
-            <p>Perfect for gently detangling curly and wavy hair without breaking up natural curl patterns or causing breakage. Use on wet hair with conditioner to minimize tugging and knots.</p>
+    <!-- Section 1: Frequently Asked Questions -->
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            How often should I wash my curly hair?
+            <span class="accordion-icon">▶</span>
         </div>
-        <div class="tool-item">
-            <h3>Satin or Silk Pillowcase</h3>
-            <p>Reduces friction to control frizz and prevent breakage. Preserves curls overnight for fresher morning hair.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Bonnet</h3>
-            <p>A satin or silk bonnet locks in moisture and reduces frizz while you sleep. Keeps hair manageable and defined.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Scrunchies</h3>
-            <p>Gentle on curls and perfect for putting hair up without causing dents or disrupting curl formation.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Diffuser Attachment</h3>
-            <p>Essential for evenly drying curly hair without frizz. Maintains natural curl patterns while adding volume and definition.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Microfiber Hair Towel</h3>
-            <p>Reduces friction and prevents breakage and frizz. Absorbs water without over-drying hair, keeping curls hydrated and bouncy.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Old T-Shirt</h3>
-            <p>A budget-friendly alternative to towels for drying hair. Great for "plopping," enhancing curl definition while hair dries.</p>
-        </div>
-        <div class="tool-item">
-            <h3>Spray Bottle</h3>
-            <p>Revives second- or third-day curls by reactivating product and bringing bounce back to lifeless waves or curls.</p>
+        <div class="accordion-content">
+            It depends on your hair type and personal preference, but generally 1-2 times a week is enough to maintain moisture while keeping your scalp clean.
         </div>
     </div>
 
-    {% comment %} Helpful Links Section {% endcomment %}
-    <div class="helpful-links">
-        <h2 class="section-title">Helpful Videos & Links</h2>
-        <a href="https://www.reddit.com/r/curlyhair/" target="_blank">Reddit - Curly Hair Community</a>
-        <a href="https://docs.google.com/document/d/1Q6Dj9WAZxlfBhJSyS5on2rw3-if5cOV3oV-dQ3B0AHA/edit?tab=t.0#heading=h.t37f7kwlj2xe" target="_blank">Google Doc - Curly Hair Routine Guide</a>
-        <a href="https://youtu.be/B0Vu6UG-OE4?si=N6B7PTZqsdDgdW8D" target="_blank">YouTube - Curl Styling Video</a>
-        <a href="https://jordana-estner.medium.com/how-to-style-naturally-curly-hair-a-step-by-step-guide-f5b9924b4125" target="_blank">Medium - Step-by-Step Curly Hair Guide</a>
+    <div class="accordion-item">
+        <div class="accordion-header">
+            What is "plopping"?
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Plopping is a method of using a cotton T-shirt or microfiber towel to enhance curl formation while your hair dries, reducing frizz and promoting definition.
+        </div>
     </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            How can I refresh my curls between wash days?
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Use a spray bottle with water or a curl refresher spray to rehydrate and reactivate your styling products. Scrunch gently to bring back your curl shape.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Should I brush my curls?
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Avoid brushing dry curls to prevent breakage and frizz. Use a wide-tooth comb or your fingers to detangle when your hair is wet and conditioned.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Helpful Links & Videos
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            <ul style="text-align: left;">
+                <li><a href="https://www.reddit.com/r/curlyhair/" target="_blank">Reddit Curly Hair Community</a></li>
+                <li><a href="https://docs.google.com/document/d/1Q6Dj9WAZxlfBhJSyS5on2rw3-if5cOV3oV-dQ3B0AHA/edit?tab=t.0#heading=h.t37f7kwlj2xe" target="_blank">Beginner's Guide to Curly Hair (Google Doc)</a></li>
+                <li><a href="https://youtu.be/B0Vu6UG-OE4?si=N6B7PTZqsdDgdW8D" target="_blank">YouTube: Curly Hair Routine</a></li>
+                <li><a href="https://jordana-estner.medium.com/how-to-style-naturally-curly-hair-a-step-by-step-guide-f5b9924b4125" target="_blank">Step-by-Step Guide to Styling Curly Hair</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 2: Helpful Tools -->
+    <h2 style="margin-top: 40px;">Helpful Tools</h2>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Wide-Tooth Comb
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Gently detangle curly and wavy hair without breaking curl patterns. Best on wet hair with conditioner to prevent knots.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Satin or Silk Pillowcase
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Reduces friction while you sleep, preventing frizz and breakage. Preserves curl shape for longer.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Bonnet
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Protects curls overnight, locking in moisture and reducing frizz. Helps curls stay defined and manageable.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Scrunchies
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Gentle on curls and avoids dents or breakage caused by regular hair ties.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Diffuser Attachment
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Distributes heat evenly while drying curls, minimizing frizz and maintaining curl shape.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Microfiber Hair Towel
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Reduces frizz and breakage by absorbing water gently. Keeps curls hydrated and bouncy.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Old T-Shirt
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            A cost-effective way to dry hair gently, enhancing curl definition and minimizing frizz.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            Spray Bottle
+            <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-content">
+            Refresh second- or third-day curls by rehydrating and reactivating styling products.
+        </div>
+    </div>
+
 </div>
+
+<script>
+    const items = document.querySelectorAll('.accordion-item');
+
+    items.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+</script>
 {% endblock %}

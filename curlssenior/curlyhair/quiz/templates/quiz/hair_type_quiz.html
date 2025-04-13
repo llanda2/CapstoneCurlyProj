@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
+
 {% block content %}
 <style>
     .quiz-container {
@@ -46,31 +47,41 @@
         max-width: 400px;
     }
 
-    .response-option {
-        background-color: #2A4F75; /* Deep Blue */
-        color: white;
-        font-size: 1.1rem;
-        padding: 10px 20px;
-        border-radius: 5px;
+    /* General for all options */
+    .response-option,
+    .image-content {
+        border: 2px solid #A3BDD1;
+        border-radius: 8px;
+        padding: 10px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: border 0.3s, box-shadow 0.3s;
         text-align: center;
-        display: inline-block;
         width: 100%;
     }
 
-    .response-option:hover {
-        background-color: #3A6A90; /* Steel Blue */
+    .response-option:hover,
+    .image-content:hover {
+        border: 2px solid #3A6A90;
+        box-shadow: 0 0 8px rgba(42, 79, 117, 0.3);
     }
 
+    /* Hide original input */
     input[type="radio"],
     input[type="checkbox"] {
-        display: none; /* Hide actual radio and checkbox elements */
+        display: none;
     }
 
+    /* Highlight selected text buttons */
     input[type="radio"]:checked + .response-option,
     input[type="checkbox"]:checked + .response-option {
-        background-color: #1F3B5F; /* Darker Blue for selected */
+        border: 3px solid #2A4F75;
+        box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
+    }
+
+    /* Highlight selected image buttons */
+    .image-option input[type="radio"]:checked + .image-content {
+        border: 3px solid #2A4F75;
+        box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
     }
 
     button {
@@ -89,6 +100,20 @@
     button:hover {
         background-color: #3A6A90; /* Steel Blue */
     }
+
+    /* Optional: image sizing and spacing */
+    .image-content img {
+        width: 80px;
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    .image-content div {
+        color: #2A4F75;
+        font-weight: bold;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.9rem;
+    }
 </style>
 
 <div class="quiz-container">
@@ -96,6 +121,7 @@
     <form method="post">
         {% csrf_token %}
 
+        <!-- Maintenance -->
         <div class="question-block">
             <span class="question-text">How much maintenance do you want to do with your hair?</span>
             <div class="response-wrapper">
@@ -108,6 +134,7 @@
             </div>
         </div>
 
+        <!-- Budget -->
         <div class="question-block">
             <span class="question-text">What's your budget? (per product)</span>
             <div class="response-wrapper">
@@ -120,25 +147,25 @@
             </div>
         </div>
 
+        <!-- Curl Type with Images -->
         <div class="question-block">
-    <label>What is your curl type?</label>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-        {% for value, label in form.curl_type.field.choices %}
-    {% with filename=curl_type_image_map|get_item:value|default:value %}
-        <label style="cursor: pointer; text-align: center;">
-            <input type="radio" name="{{ form.curl_type.name }}" value="{{ value }}" style="display: none;" required>
-            <img src="{% static 'images/curlPattern/' %}{{ filename }}" alt="{{ label }}"
-                 style="width: 80px; height: auto; border: 2px solid transparent; border-radius: 8px; transition: 0.3s; margin-bottom: 5px;">
-            <div style="color: #2A4F75; font-weight: bold; font-family: 'Tenor Sans', sans-serif; font-size: 0.9rem;">
-                {{ label }}
+            <span class="question-text">What’s your curl type?</span>
+            <div class="response-wrapper">
+                {% for value, label in form.curl_type.field.choices %}
+                    {% with filename=curl_type_image_map|get_item:value|default:value %}
+                        <label class="image-option">
+                            <input type="radio" name="curl_type" value="{{ value }}" required>
+                            <div class="image-content">
+                                <img src="{% static 'images/curlPattern/' %}{{ filename }}" alt="{{ label }}">
+                                <div>{{ label }}</div>
+                            </div>
+                        </label>
+                    {% endwith %}
+                {% endfor %}
             </div>
-        </label>
-    {% endwith %}
-{% endfor %}
+        </div>
 
-    </div>
-</div>
-
+        <!-- Vegan Preference -->
         <div class="question-block">
             <span class="question-text">Do you prefer vegan products?</span>
             <div class="response-wrapper">
@@ -151,6 +178,7 @@
             </div>
         </div>
 
+        <!-- Hair Length -->
         <div class="question-block">
             <span class="question-text">How long is your hair?</span>
             <div class="response-wrapper">
@@ -163,6 +191,7 @@
             </div>
         </div>
 
+        <!-- Scalp Condition -->
         <div class="question-block">
             <span class="question-text">What’s your scalp condition?</span>
             <div class="response-wrapper">
@@ -175,6 +204,7 @@
             </div>
         </div>
 
+        <!-- Oiliness -->
         <div class="question-block">
             <span class="question-text">How soon does your hair get oily after washing?</span>
             <div class="response-wrapper">
@@ -187,6 +217,7 @@
             </div>
         </div>
 
+        <!-- Hold Level -->
         <div class="question-block">
             <span class="question-text">What level of hold do you prefer for styling products?</span>
             <div class="response-wrapper">
