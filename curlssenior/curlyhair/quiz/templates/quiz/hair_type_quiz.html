@@ -47,8 +47,41 @@
         max-width: 400px;
     }
 
-    /* General for all options */
-    .response-option,
+    /* General option styles for text buttons */
+    .response-option {
+        background-color: #E8F0F7; /* Light pastel blue */
+        color: #2A4F75;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        border: 2px solid #A3BDD1;
+    }
+
+    .response-option:hover {
+        background-color: #d0e1f0; /* Slightly darker on hover */
+        border-color: #5785A7;
+    }
+
+    /* Hide the actual radio/checkbox */
+    input[type="radio"],
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    /* Selected text option style */
+    input[type="radio"]:checked + .response-option,
+    input[type="checkbox"]:checked + .response-option {
+        border: 3px solid #2A4F75;
+        box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
+        background-color: #c0d9ec; /* Deeper pastel blue when selected */
+    }
+
+    /* Shared option styles for images */
     .image-content {
         border: 2px solid #A3BDD1;
         border-radius: 8px;
@@ -59,29 +92,28 @@
         width: 100%;
     }
 
-    .response-option:hover,
     .image-content:hover {
         border: 2px solid #3A6A90;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.3);
     }
 
-    /* Hide original input */
-    input[type="radio"],
-    input[type="checkbox"] {
-        display: none;
-    }
-
-    /* Highlight selected text buttons */
-    input[type="radio"]:checked + .response-option,
-    input[type="checkbox"]:checked + .response-option {
-        border: 3px solid #2A4F75;
-        box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
-    }
-
-    /* Highlight selected image buttons */
+    /* Highlight selected image options */
     .image-option input[type="radio"]:checked + .image-content {
         border: 3px solid #2A4F75;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
+    }
+
+    .image-content img {
+        width: 80px;
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    .image-content div {
+        color: #2A4F75;
+        font-weight: bold;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.9rem;
     }
 
     button {
@@ -100,21 +132,8 @@
     button:hover {
         background-color: #3A6A90; /* Steel Blue */
     }
-
-    /* Optional: image sizing and spacing */
-    .image-content img {
-        width: 80px;
-        height: auto;
-        margin-bottom: 5px;
-    }
-
-    .image-content div {
-        color: #2A4F75;
-        font-weight: bold;
-        font-family: 'Tenor Sans', sans-serif;
-        font-size: 0.9rem;
-    }
 </style>
+
 
 <div class="quiz-container">
     <h1>Find Your Curly Hair Routine</h1>
