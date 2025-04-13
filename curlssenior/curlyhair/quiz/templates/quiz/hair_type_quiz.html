@@ -20,9 +20,9 @@
     }
 
     .question-block {
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         background-color: #A3BDD1; /* Powder Blue */
-        padding: 15px;
+        padding: 20px;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -31,7 +31,7 @@
 
     .question-text {
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         font-size: 1.2rem;
         color: #3A6A90; /* Steel Blue */
         font-weight: bold;
@@ -42,9 +42,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 16px; /* Increased gap for clarity */
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
     }
 
     /* General option styles for text buttons */
@@ -58,16 +58,15 @@
         transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
         text-align: center;
         display: inline-block;
-        width: 100%;
+        width: calc(45% - 8px); /* Approx 2 per row, with gap */
         border: 2px solid #A3BDD1;
     }
 
     .response-option:hover {
-        background-color: #d0e1f0; /* Slightly darker on hover */
+        background-color: #d0e1f0;
         border-color: #5785A7;
     }
 
-    /* Hide the actual radio/checkbox */
     input[type="radio"],
     input[type="checkbox"] {
         display: none;
@@ -78,10 +77,16 @@
     input[type="checkbox"]:checked + .response-option {
         border: 3px solid #2A4F75;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
-        background-color: #c0d9ec; /* Deeper pastel blue when selected */
+        background-color: #c0d9ec;
     }
 
-    /* Shared option styles for images */
+    /* Image button wrappers */
+    .image-option {
+        width: calc(30% - 10px); /* Adjust spacing for images */
+        margin: 5px;
+        display: inline-block;
+    }
+
     .image-content {
         border: 2px solid #A3BDD1;
         border-radius: 8px;
@@ -89,7 +94,6 @@
         cursor: pointer;
         transition: border 0.3s, box-shadow 0.3s;
         text-align: center;
-        width: 100%;
     }
 
     .image-content:hover {
@@ -97,7 +101,6 @@
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.3);
     }
 
-    /* Highlight selected image options */
     .image-option input[type="radio"]:checked + .image-content {
         border: 3px solid #2A4F75;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
@@ -117,7 +120,7 @@
     }
 
     button {
-        background-color: #2A4F75; /* Deep Blue */
+        background-color: #2A4F75;
         color: white;
         font-size: 1.3rem;
         padding: 12px 30px;
@@ -130,9 +133,19 @@
     }
 
     button:hover {
-        background-color: #3A6A90; /* Steel Blue */
+        background-color: #3A6A90;
+    }
+
+    @media (max-width: 600px) {
+        .response-option {
+            width: 100%; /* Stack on smaller screens */
+        }
+        .image-option {
+            width: 45%; /* 2 per row on mobile */
+        }
     }
 </style>
+
 
 
 <div class="quiz-container">
