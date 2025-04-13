@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Helpful Tips & Tools - Curly Hair Project{% endblock %}
+
+{% block content %}
+<style>
+    .helpful-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #C6D7E3;
+        border-radius: 10px;
+        color: #2A4F75;
+        font-family: 'Archivo Narrow', sans-serif;
+    }
+
+    .section-title {
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2A4F75;
+    }
+
+    .tool-item {
+        margin-bottom: 20px;
+        background: #A3BDD1;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .tool-item h3 {
+        font-family: 'Tenor Sans', sans-serif;
+        color: #2A4F75;
+        margin-bottom: 8px;
+    }
+
+    .helpful-links {
+        margin-top: 30px;
+    }
+
+    .helpful-links a {
+        display: block;
+        margin-bottom: 10px;
+        color: #2A4F75;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .helpful-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="helpful-container">
+    <h1 class="section-title">Helpful Tips & Tools</h1>
+
+    {% comment %} Tools Section {% endcomment %}
+    <div class="tools-section">
+        <div class="tool-item">
+            <h3>Wide-Tooth Comb</h3>
+            <p>Perfect for gently detangling curly and wavy hair without breaking up natural curl patterns or causing breakage. Use on wet hair with conditioner to minimize tugging and knots.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Satin or Silk Pillowcase</h3>
+            <p>Reduces friction to control frizz and prevent breakage. Preserves curls overnight for fresher morning hair.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Bonnet</h3>
+            <p>A satin or silk bonnet locks in moisture and reduces frizz while you sleep. Keeps hair manageable and defined.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Scrunchies</h3>
+            <p>Gentle on curls and perfect for putting hair up without causing dents or disrupting curl formation.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Diffuser Attachment</h3>
+            <p>Essential for evenly drying curly hair without frizz. Maintains natural curl patterns while adding volume and definition.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Microfiber Hair Towel</h3>
+            <p>Reduces friction and prevents breakage and frizz. Absorbs water without over-drying hair, keeping curls hydrated and bouncy.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Old T-Shirt</h3>
+            <p>A budget-friendly alternative to towels for drying hair. Great for "plopping," enhancing curl definition while hair dries.</p>
+        </div>
+        <div class="tool-item">
+            <h3>Spray Bottle</h3>
+            <p>Revives second- or third-day curls by reactivating product and bringing bounce back to lifeless waves or curls.</p>
+        </div>
+    </div>
+
+    {% comment %} Helpful Links Section {% endcomment %}
+    <div class="helpful-links">
+        <h2 class="section-title">Helpful Videos & Links</h2>
+        <a href="https://www.reddit.com/r/curlyhair/" target="_blank">Reddit - Curly Hair Community</a>
+        <a href="https://docs.google.com/document/d/1Q6Dj9WAZxlfBhJSyS5on2rw3-if5cOV3oV-dQ3B0AHA/edit?tab=t.0#heading=h.t37f7kwlj2xe" target="_blank">Google Doc - Curly Hair Routine Guide</a>
+        <a href="https://youtu.be/B0Vu6UG-OE4?si=N6B7PTZqsdDgdW8D" target="_blank">YouTube - Curl Styling Video</a>
+        <a href="https://jordana-estner.medium.com/how-to-style-naturally-curly-hair-a-step-by-step-guide-f5b9924b4125" target="_blank">Medium - Step-by-Step Curly Hair Guide</a>
+    </div>
+</div>
+{% endblock %}

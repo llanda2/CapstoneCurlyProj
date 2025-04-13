@@ -14,6 +14,8 @@ def home(request):
         'logged_products': logged_products
     })
 
+def helpful_tips(request):
+    return render(request, 'quiz/helpful_tips.html')
 
 import re
 from django.shortcuts import render
