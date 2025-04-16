@@ -1,13 +1,63 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Home - Curly Hair Project{% endblock %}
+{% block title %}Home – Curly Hair Project{% endblock %}
 
 {% block content %}
-    <h1>The Curly Hair Helper</h1>
-    <p style="text-align:center;">Find, track, and log products that are perfect for your curly hair.</p>
+    <!-- Page Heading -->
+    <h1 style="text-align:center; margin-top:1.5rem;">
+        The Curly Hair Helper
+    </h1>
+    <p style="text-align:center; max-width:620px; margin:0 auto 2rem;">
+        Find, track, and log products that are perfect for your curly‑hair routine.
+    </p>
 
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="{% url 'hair_type_quiz' %}" class="btn btn-primary">Take the Quiz</a>
-        <a href="{% url 'tried_that' %}" class="btn btn-success">Tried That: Log Your Products</a>
+    <!-- Primary actions -->
+    <div style="text-align:center; margin-bottom:2.5rem;">
+        <a href="{% url 'hair_type_quiz' %}"
+           class="btn"
+           style="
+                background:#2A4F75;          /* Deep Blue */
+                color:#fff;
+                padding:14px 32px;
+                font-size:1.15rem;
+                border-radius:6px;
+                margin:0 8px;
+            ">
+            Take the Quiz
+        </a>
+
+        <a href="{% url 'tried_that' %}"
+           class="btn"
+           style="
+                background:#5785A7;          /* Slate Blue */
+                color:#fff;
+                padding:14px 32px;
+                font-size:1.15rem;
+                border-radius:6px;
+                margin:0 8px;
+            ">
+            Tried That: Log Products
+        </a>
+    </div>
+
+    <!-- Feedback link -->
+    <div style="text-align:center;">
+        <a href="https://forms.gle/bUjNUmpo8oVzZVFN6"
+           target="_blank"
+           style="
+                display:inline-block;
+                padding:12px 28px;
+                font-size:1.1rem;
+                font-weight:600;
+                background:#3A6A90;      /* Steel Blue */
+                color:#ffffff;
+                border-radius:6px;
+                text-decoration:none;
+                transition:background .25s;
+            "
+           onmouseover="this.style.background='#2A4F75'"
+           onmouseout="this.style.background='#3A6A90'">
+            ☞ Give Feedback on the Curly Hair App
+        </a>
     </div>
 {% endblock %}
