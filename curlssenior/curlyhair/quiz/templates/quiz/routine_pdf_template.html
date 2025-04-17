@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #C6D7E3;
+            color: #2A4F75;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #2A4F75;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #2A4F75;
+            padding-bottom: 5px;
+        }
+        .product-block {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .main-product {
+            background-color: #E1ECF4;
+            border-left: 5px solid #5785A7;
+        }
+        .product-name {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Curly Hair Routine</h1>
+
+    {% for step in routine_steps %}
+        <div class="section-header">{{ step }}</div>
+
+        {% with categorized_products|get_item:step as step_products %}
+            {% if step_products %}
+                <div class="product-block main-product">
+                    <div class="product-name">
+                        {% if step_products.0.brand %}{{ step_products.0.brand }} - {% endif %}{{ step_products.0.name }}
+                    </div>
+                </div>
+
+                {% for product in step_products|slice:"1:" %}
+                    <div class="product-block">
+                        <div class="product-name">
+                            {% if product.brand %}{{ product.brand }} - {% endif %}{{ product.name }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="product-block">No products available</div>
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+
+    {% if special_recommendations %}
+        <div class="section-header">Special Recommendations</div>
+        {% for key, products in special_recommendations.items %}
+            <div style="margin-top: 10px; font-weight: bold;">{{ key }}</div>
+            {% for product in products %}
+                <div class="product-block">
+                    <div class="product-name">
+                        {% if product.brand %}{{ product.brand }} - {% endif %}{{ product.name }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
