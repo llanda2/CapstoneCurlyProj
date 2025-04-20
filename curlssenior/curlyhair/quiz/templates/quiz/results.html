@@ -80,15 +80,18 @@
         </div>
     {% endif %}
 
-    <!-- Save Routine Button -->
-    <!-- Save Routine Button -->
+<!-- Save Routine Button -->
 <div style="text-align: center; margin: 40px 0;" class="print-hide">
-    <button onclick="window.print()" class="btn" style="padding: 12px 30px; font-size: 1.1rem;">
+    <button id="saveRoutineBtn" class="btn" style="padding: 12px 30px; font-size: 1.1rem;">
         Save My Routine
     </button>
     <p style="color: #2A4F75; font-size: 0.9rem; margin-top: 10px;">
-        Select your products above and use your browser’s “Save as PDF” option after clicking.
+        Your routine will be downloaded as a PDF.
     </p>
 </div>
+
+<!-- Load the JS -->
+<script src="{% static 'js/save_routine.js' %}"></script>
+
 
 {% endblock %}
