@@ -34,11 +34,10 @@ class HairQuizForm(forms.Form):
 
     VEGAN_CHOICES = [('yes', 'Yes'), ('no', 'No')]
 
-    HAIR_LENGTH_CHOICES = [
-        ('waist', 'To my waist'),
-        ('mid_back', 'Mid back'),
-        ('shoulders', 'Shoulders'),
-        ('chin', 'Chin'),
+    HOLD_CHOICES = [
+        ('light', 'Light'),
+        ('medium', 'Medium'),
+        ('strong', 'Strong'),
     ]
 
     SCALP_CONDITION_CHOICES = [
@@ -48,26 +47,19 @@ class HairQuizForm(forms.Form):
         ('neither', 'Neither'),
     ]
 
-    OILINESS_CHOICES = [
-        ('1-2_days', '1-2 days'),
-        ('3-4_days', '3-4 days'),
-        ('week', 'A week'),
-    ]
-
-    HOLD_CHOICES = [
-        ('light', 'Light'),
-        ('medium', 'Medium'),
-        ('strong', 'Strong'),
+    COLOR_TREATED_CHOICES = [
+        ('yes', 'Yes'),
+        ('no', 'No'),
     ]
 
     maintenance = forms.ChoiceField(choices=MAINTENANCE_CHOICES, widget=forms.RadioSelect)
     budget = forms.ChoiceField(choices=BUDGET_CHOICES, widget=forms.RadioSelect)
     curl_type = forms.ChoiceField(choices=CURL_TYPE_CHOICES, widget=forms.Select)
     vegan = forms.ChoiceField(choices=VEGAN_CHOICES, widget=forms.RadioSelect)
-    hair_length = forms.ChoiceField(choices=HAIR_LENGTH_CHOICES, widget=forms.Select)
-    scalp_condition = forms.ChoiceField(choices=SCALP_CONDITION_CHOICES, widget=forms.RadioSelect)
-    oiliness = forms.ChoiceField(choices=OILINESS_CHOICES, widget=forms.RadioSelect)
     hold = forms.ChoiceField(choices=HOLD_CHOICES, widget=forms.RadioSelect)
+    scalp_condition = forms.ChoiceField(choices=SCALP_CONDITION_CHOICES, widget=forms.RadioSelect)
+    color_treated = forms.ChoiceField(label="Has your hair been chemically or color treated recently?",
+                                      choices=COLOR_TREATED_CHOICES, widget=forms.RadioSelect)
     def clean_hair_type(self):
         data = self.cleaned_data['hair_type']
         return data

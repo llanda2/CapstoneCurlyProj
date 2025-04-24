@@ -23,25 +23,26 @@ from django.shortcuts import render
 from django.db.models import Q
 
 
+from django.db.models import Q
+from django.shortcuts import render
+from .forms import HairQuizForm
+from .models import HairProduct
+
 def hair_type_quiz(request):
     if request.method == 'POST':
         form = HairQuizForm(request.POST)
         if form.is_valid():
             quiz_data = form.cleaned_data
 
-            # Get user selections
-            price_range = quiz_data.get('budget')  # updated from 'price_range'
-
+            price_range = quiz_data.get('budget')
             hair_type = quiz_data.get('hair_type', '')
-            curl_pattern = quiz_data.get('curl_pattern', '')
-            vegan = quiz_data.get('vegan', False)
-            scalp_condition = quiz_data.get('scalp_condition', 'normal')
-            styling_product = quiz_data.get('styling_product')
+            curl_pattern = quiz_data.get('curl_type', '')
+            vegan = quiz_data.get('vegan', 'no') == 'yes'
+            hold_level = quiz_data.get('hold', '')
+            scalp_condition = quiz_data.get('scalp_condition', '')
+            color_treated = quiz_data.get('color_treated', 'no') == 'yes'
+            maintenance_level = quiz_data.get('maintenance', 'medium').title()
 
-            if isinstance(vegan, str):
-                vegan = vegan.lower() in ('yes', 'true', 'y', 't', '1')
-
-            # Filter by price range
             if price_range == "$":
                 base_products = HairProduct.objects.filter(price__lte=12.00)
             elif price_range == "$$":
@@ -49,80 +50,64 @@ def hair_type_quiz(request):
             else:
                 base_products = HairProduct.objects.filter(price__gt=25.00)
 
+            if color_treated:
+                base_products = base_products.filter(sulfate_free__iexact='Yes')
 
-            # Filter further by curl, hair type, vegan
             base_products = base_products.filter(
                 hair_type__icontains=hair_type,
                 curl_pattern__icontains=curl_pattern,
                 vegan=vegan
             )
 
-
             all_matching_products = base_products.distinct()
 
-            # Apply Growth Areas Filter
-            growth_areas = quiz_data.get('growth_areas', [])
-            if growth_areas:
-                growth_q_objects = [Q(growth_areas__icontains=area) for area in growth_areas]
-                growth_query = growth_q_objects[0]
-                for q in growth_q_objects[1:]:
-                    growth_query |= q
-                growth_filtered = base_products.filter(growth_query)
-                if growth_filtered.exists():
-                    base_products = growth_filtered
-                    all_matching_products = base_products.distinct()
-
-            # Styling product filter (optional)
-            if styling_product:
-                styling_filtered = base_products.filter(category__icontains=styling_product)
-                styling_products = styling_filtered if styling_filtered.exists() else base_products
-            else:
-                styling_products = base_products
-
-            styling_products = styling_products.distinct()
-
-            # Routine Steps
             routine_steps = {
                 "Low": ["Shampoo", "Conditioner", "Curl Cream"],
                 "Medium": ["Shampoo", "Conditioner", "Curl Cream", "Gel/Mousse"],
                 "High": ["Shampoo", "Conditioner", "Leave-In", "Curl Cream", "Gel", "Mousse"]
             }
 
-            maintenance_level = quiz_data.get('maintenance', 'medium').title()
-            steps_needed = routine_steps.get(maintenance_level, routine_steps['Medium'])
-
+            steps_needed = routine_steps.get(maintenance_level, routine_steps["Medium"])
             categorized_products = {}
 
             for step in steps_needed:
                 if step in ["Gel/Mousse", "Mousse/Gel"]:
-                    mousse_products = all_matching_products.filter(category__icontains="Mousse")
-                    gel_products = all_matching_products.filter(category__icontains="Gel")
-                    combined = list(mousse_products) + list(gel_products)
-                    deduped = {
-                        f"{p.name.strip().lower()}__{p.brand.strip().lower()}": p
-                        for p in combined
-                    }.values()
-                    categorized_products[step] = list(deduped)
-
-                elif styling_product and step.lower() == styling_product.lower():
-                    matching_products = styling_products.filter(category__icontains=step)
-                    deduped = {
-                        f"{p.name.strip().lower()}__{p.brand.strip().lower()}": p
-                        for p in matching_products
-                    }.values()
-                    categorized_products[step] = list(deduped)
-
+                    mousse = all_matching_products.filter(category__icontains="Mousse")
+                    gel = all_matching_products.filter(category__icontains="Gel")
+                    combined = list(mousse) + list(gel)
                 else:
-                    matching_products = all_matching_products.filter(category__icontains=step)
-                    deduped = {
-                        f"{p.name.strip().lower()}__{p.brand.strip().lower()}": p
-                        for p in matching_products
-                    }.values()
-                    categorized_products[step] = list(deduped)
+                    combined = all_matching_products.filter(category__icontains=step)
 
+                deduped = {
+                    f"{p.name.strip().lower()}__{p.brand.strip().lower()}": p
+                    for p in combined
+                }.values()
+                categorized_products[step] = list(deduped)
 
-            # Scalp Condition — optional section (simplified for now)
-            special_recommendations = {}  # Add your scalp logic here later if needed
+            special_recommendations = {}
+
+            def scalp_filtered(category):
+                qs = HairProduct.objects.filter(category__icontains=category, vegan=vegan)
+                if color_treated:
+                    qs = qs.filter(sulfate_free__iexact='Yes')
+                if price_range == "$":
+                    return qs.filter(price__lte=12.00)
+                elif price_range == "$$":
+                    return qs.filter(price__gt=12.00, price__lte=25.00)
+                else:
+                    return qs.filter(price__gt=25.00)
+
+            if scalp_condition == "oily":
+                special_recommendations["Clarifying Shampoo (Use Weekly)"] = list(scalp_filtered("Clarifying"))
+
+            elif scalp_condition == "flaky":
+                special_recommendations["Scalp Oil (Use Daily)"] = list(scalp_filtered("Oil"))
+                special_recommendations["Hair Mask (Use Weekly)"] = list(scalp_filtered("Mask"))
+
+            elif scalp_condition == "in_between":
+                special_recommendations["Clarifying Shampoo"] = list(scalp_filtered("Clarifying"))
+                special_recommendations["Scalp Oil"] = list(scalp_filtered("Oil"))
+                special_recommendations["Hair Mask"] = list(scalp_filtered("Mask"))
 
             return render(request, 'quiz/results.html', {
                 'categorized_products': categorized_products,
