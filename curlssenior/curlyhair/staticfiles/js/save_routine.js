@@ -133,62 +133,22 @@ function collectRoutineData() {
     return routineData;
 }
 
-function saveRoutineAsPDF() {
-    // Show loading indicator
-    const saveButton = document.getElementById('save-routine-pdf');
-    const originalButtonText = saveButton.textContent;
-    saveButton.textContent = "Generating PDF...";
-    saveButton.disabled = true;
-
-    try {
-        // Collect the routine data
-        const routineData = collectRoutineData();
-
-        // Create a form to submit the data
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/save-routine-pdf/'; // Update with your URL pattern
-        form.style.display = 'none';
-
-        // Add CSRF token
-        const csrfTokenEl = document.querySelector('[name=csrfmiddlewaretoken]');
-        if (!csrfTokenEl) {
-            alert("Security token not found. Please refresh the page and try again.");
-            saveButton.textContent = originalButtonText;
-            saveButton.disabled = false;
-            return;
+// Helper function to get CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
         }
-
-        const csrfInput = document.createElement('input');
-        csrfInput.type = 'hidden';
-        csrfInput.name = 'csrfmiddlewaretoken';
-        csrfInput.value = csrfTokenEl.value;
-        form.appendChild(csrfInput);
-
-        // Add routine data
-        const dataInput = document.createElement('input');
-        dataInput.type = 'hidden';
-        dataInput.name = 'routine_data';
-        dataInput.value = JSON.stringify(routineData);
-        form.appendChild(dataInput);
-
-        // Add form to body and submit
-        document.body.appendChild(form);
-        form.submit();
-
-        // Reset button after a delay (in case the form submission fails)
-        setTimeout(() => {
-            saveButton.textContent = originalButtonText;
-            saveButton.disabled = false;
-            document.body.removeChild(form);
-        }, 5000);
-    } catch (error) {
-        console.error("Error generating PDF:", error);
-        alert("An error occurred while preparing your routine. Please try again.");
-        saveButton.textContent = originalButtonText;
-        saveButton.disabled = false;
     }
+    return cookieValue;
 }
+
 document.addEventListener("DOMContentLoaded", function () {
     const saveButton = document.getElementById("saveRoutineBtn");
 
@@ -199,34 +159,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     saveButton.addEventListener("click", function () {
         console.log("Save button clicked");
-
-        const selects = document.querySelectorAll("select");
-        const routineData = {};
-
-        // Loop through all select inputs to build data object
-        selects.forEach(select => {
-            routineData[select.name] = select.value;
-        });
-
-        // ✅ Define formData *inside* the event listener
+        
+        // Try to get CSRF token from either form field or cookie
+        let csrfToken;
+        const csrfElement = document.querySelector('[name=csrfmiddlewaretoken]');
+        
+        if (csrfElement) {
+            csrfToken = csrfElement.value;
+        } else {
+            csrfToken = getCookie('csrftoken');
+            
+            if (!csrfToken) {
+                console.warn("CSRF token not found. Request may fail.");
+            }
+        }
+        
+        // Display loading state
+        const originalText = saveButton.textContent;
+        saveButton.textContent = "Generating PDF...";
+        saveButton.disabled = true;
+        
+        // Collect data using the collectRoutineData function
+        const routineData = collectRoutineData();
+        
+        // Create form data
         const formData = new FormData();
         formData.append("routine_data", JSON.stringify(routineData));
-
+        
+        // Set up headers
+        const headers = {
+            "X-Requested-With": "XMLHttpRequest"
+        };
+        
+        // Add CSRF token if we found one
+        if (csrfToken) {
+            headers["X-CSRFToken"] = csrfToken;
+        }
+        
         fetch("/save-routine-pdf/", {
             method: "POST",
             body: formData,
-            headers: {
-    "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-    "X-Requested-With": "XMLHttpRequest"  // Sometimes needed for Django
-}
+            headers: headers,
+            credentials: "same-origin" // Include cookies in the request
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error("Failed to generate PDF");
+                throw new Error(`Server returned ${response.status}: ${response.statusText}`);
             }
             return response.blob();
         })
         .then(blob => {
+            // Create download
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
@@ -234,10 +217,16 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.appendChild(a);
             a.click();
             a.remove();
+            
+            // Reset button
+            saveButton.textContent = originalText;
+            saveButton.disabled = false;
         })
         .catch(error => {
             console.error("Error saving PDF:", error);
             alert("Could not save your routine. Please try again.");
+            saveButton.textContent = originalText;
+            saveButton.disabled = false;
         });
     });
 });
