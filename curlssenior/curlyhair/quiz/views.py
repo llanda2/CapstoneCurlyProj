@@ -8,7 +8,6 @@ from .forms import TriedProductForm
 def home(request):
     # Debug: Print the logged products to check if they're fetched
     logged_products = TriedProduct.objects.all()
-    print("Logged Products for Home Page:", logged_products)  # Debugging line
 
     return render(request, 'home.html', {
         'logged_products': logged_products
@@ -29,11 +28,9 @@ def hair_type_quiz(request):
         form = HairQuizForm(request.POST)
         if form.is_valid():
             quiz_data = form.cleaned_data
-            print("📋 Quiz Data:", quiz_data)
 
             # Get user selections
             price_range = quiz_data.get('budget')  # updated from 'price_range'
-            print("💸 Budget selected from form:", price_range)
 
             hair_type = quiz_data.get('hair_type', '')
             curl_pattern = quiz_data.get('curl_pattern', '')
@@ -52,9 +49,6 @@ def hair_type_quiz(request):
             else:
                 base_products = HairProduct.objects.filter(price__gt=25.00)
 
-            print("🧼 Products after price filter:")
-            for p in base_products:
-                print(f"- {p.brand} {p.name} | ${p.price}")
 
             # Filter further by curl, hair type, vegan
             base_products = base_products.filter(
@@ -63,7 +57,6 @@ def hair_type_quiz(request):
                 vegan=vegan
             )
 
-            print(f"✅ Products after all filters: {base_products.count()} found")
 
             all_matching_products = base_products.distinct()
 
@@ -75,7 +68,6 @@ def hair_type_quiz(request):
                 for q in growth_q_objects[1:]:
                     growth_query |= q
                 growth_filtered = base_products.filter(growth_query)
-                print(f"🌱 After Growth Area filter: {growth_filtered.count()} found")
                 if growth_filtered.exists():
                     base_products = growth_filtered
                     all_matching_products = base_products.distinct()
@@ -83,7 +75,6 @@ def hair_type_quiz(request):
             # Styling product filter (optional)
             if styling_product:
                 styling_filtered = base_products.filter(category__icontains=styling_product)
-                print(f"🎨 After Styling Product filter: {styling_filtered.count()} found")
                 styling_products = styling_filtered if styling_filtered.exists() else base_products
             else:
                 styling_products = base_products
@@ -129,7 +120,6 @@ def hair_type_quiz(request):
                     }.values()
                     categorized_products[step] = list(deduped)
 
-                print(f"🧴 {step}: {len(categorized_products[step])} unique products")
 
             # Scalp Condition — optional section (simplified for now)
             special_recommendations = {}  # Add your scalp logic here later if needed
@@ -216,11 +206,9 @@ def save_routine_pdf(request):
     if request.method == 'POST':
         try:
             routine_data_raw = request.POST.get('routine_data', '{}')
-            print("RAW routine data string:", routine_data_raw)
 
             try:
                 routine_data = json.loads(routine_data_raw)
-                print("Parsed routine data:", json.dumps(routine_data, indent=2))  # 👈 formatted debug output
             except json.JSONDecodeError:
                 logger.error("Invalid JSON data received")
                 return HttpResponse("Invalid data format. Please try again.", status=400)
