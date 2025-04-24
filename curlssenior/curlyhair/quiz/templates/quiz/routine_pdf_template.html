@@ -1,0 +1,177 @@
+{% load static custom_filters %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Curl Hair Routine</title>
+    <style>
+        @page {
+            size: letter portrait;
+            margin: 2cm;
+        }
+        body {
+            font-family: "Helvetica", "Arial", sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #5785A7;
+            padding-bottom: 15px;
+        }
+        .header h1 {
+            color: #2A4F75;
+            font-size: 24px;
+            margin: 0 0 5px 0;
+        }
+        .header p {
+            color: #666;
+            font-size: 12px;
+            margin: 0;
+        }
+        .intro {
+            background-color: #f7f9fc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e6ed;
+        }
+        .section-title {
+            color: #2A4F75;
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #5785A7;
+        }
+        .routine-step {
+            background-color: #ffffff;
+            border: 1px solid #d0dbe7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .step-header {
+            display: flex;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #d0dbe7;
+            padding-bottom: 10px;
+        }
+        .step-number {
+            background-color: #5785A7;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .step-title {
+            color: #2A4F75;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .product-title {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .selected-product {
+            background-color: #edf5fd;
+            border-left: 4px solid #5785A7;
+            padding: 10px 10px 10px 15px;
+            margin-bottom: 15px;
+        }
+        .product-name {
+            color: #2A4F75;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 10px;
+            border-top: 1px solid #d0dbe7;
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+        }
+        .tips-section {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f7fcf7;
+            border: 1px solid #d0e7d0;
+            border-radius: 8px;
+        }
+        .tips-title {
+            color: #5a8557;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .tips-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .tip-item {
+            font-size: 13px;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .tip-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5a8557;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Your Personal Curl Hair Routine</h1>
+        <p>Generated on {{ generated_date }}</p>
+    </div>
+
+    <div class="intro">
+        <p>This custom curl care routine has been created specifically for your hair type and preferences. Following these steps with the recommended products will help you achieve your best curls.</p>
+    </div>
+
+    <h2 class="section-title">Your Routine Steps</h2>
+
+<div style="padding: 10px 20px;">
+    <ol style="padding-left: 20px;">
+        {% for step, product in routine_data.items %}
+        <li style="margin-bottom: 12px;">
+            <strong>{{ step }}:</strong>
+            {{ product|default:"N/A" }}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+
+
+    <div class="tips-section">
+        <h3 class="tips-title">Curl Care Tips</h3>
+        <ul class="tips-list">
+            <li class="tip-item">Always use a microfiber towel or cotton t-shirt to dry your curls</li>
+            <li class="tip-item">Apply products to soaking wet hair for best definition</li>
+            <li class="tip-item">Sleep on a silk or satin pillowcase to prevent frizz</li>
+            <li class="tip-item">Refresh your curls between washes with a light water spray</li>
+            <li class="tip-item">Handle your curls gently to minimize breakage and frizz</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>This personalized curl routine was created using the Curl Hair Webapp</p>
+    </div>
+</body>
+</html>

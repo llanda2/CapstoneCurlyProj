@@ -14,8 +14,10 @@ def home(request):
         'logged_products': logged_products
     })
 
+
 def helpful_tips(request):
     return render(request, 'quiz/helpful_tips.html')
+
 
 import re
 from django.shortcuts import render
@@ -109,7 +111,7 @@ def hair_type_quiz(request):
 
             # Get maintenance level with default
             # Convert to title case to match dictionary keys
-            maintenance_level = quiz_data.get('maintenance', 'medium').title()            # Categorization based on product types
+            maintenance_level = quiz_data.get('maintenance', 'medium').title()  # Categorization based on product types
             steps_needed = routine_steps.get(maintenance_level, routine_steps['Medium'])  # Fallback if invalid value
             categorized_products = {}
 
@@ -279,3 +281,79 @@ def tried_that(request):
         'form': form,
         'logged_products': logged_products
     })
+
+
+# Add to your views.py file
+
+from django.http import HttpResponse, JsonResponse
+from django.template.loader import get_template
+from django.template import Context, Template
+from xhtml2pdf import pisa
+from io import BytesIO
+from django.utils.text import slugify
+from datetime import datetime
+import json
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+
+
+def save_routine_pdf(request):
+    """Generate and return a PDF of the user's curl routine"""
+    if request.method == 'POST':
+        try:
+            routine_data_raw = request.POST.get('routine_data', '{}')
+            print("RAW routine data string:", routine_data_raw)
+
+            try:
+                routine_data = json.loads(routine_data_raw)
+                print("Parsed routine data:", json.dumps(routine_data, indent=2))  # 👈 formatted debug output
+            except json.JSONDecodeError:
+                logger.error("Invalid JSON data received")
+                return HttpResponse("Invalid data format. Please try again.", status=400)
+
+            # Log data for debugging
+            logger.debug(f"Received routine data: {routine_data}")
+
+            # Create a context with the data
+            context = {
+                'routine_data': routine_data,
+                'generated_date': datetime.now().strftime('%B %d, %Y'),
+            }
+
+            # Get template and render it with context
+            template = get_template('quiz/routine_pdf_template.html')
+            html = template.render(context)
+
+            # Create PDF response
+            buffer = BytesIO()
+
+            # Create PDF
+            pdf_status = pisa.CreatePDF(
+                html,
+                dest=buffer,
+                encoding='UTF-8'
+            )
+
+            if not pdf_status.err:
+                # Success - return PDF file for download
+                buffer.seek(0)
+                filename = f"curl_routine_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+                return response
+            else:
+                # Log the error
+                logger.error(f"PDF generation error: {pdf_status.err}")
+                return HttpResponse("Error generating PDF. Please try again.", status=500)
+
+        except json.JSONDecodeError:
+            logger.error("Invalid JSON data received")
+            return HttpResponse("Invalid data format. Please try again.", status=400)
+        except Exception as e:
+            logger.exception("Error in PDF generation")
+            return HttpResponse(f"An error occurred: {str(e)}", status=500)
+
+    return HttpResponse("This endpoint requires a POST request with routine data.", status=400)
+    return render(request, 'quiz/your_results_template.html', context)
