@@ -9,47 +9,41 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        background-color: #C6D7E3; /* Misty Blue background */
+        background-color: #C6D7E3;
         border-radius: 10px;
     }
-
     h1 {
-        color: #2A4F75; /* Deep Blue */
+        color: #2A4F75;
         font-size: 2.5rem;
         margin-bottom: 30px;
     }
-
     .question-block {
         margin-bottom: 30px;
-        background-color: #A3BDD1; /* Powder Blue */
+        background-color: #A3BDD1;
         padding: 20px;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
     .question-text {
         display: block;
         margin-bottom: 15px;
         font-size: 1.2rem;
-        color: #3A6A90; /* Steel Blue */
+        color: #3A6A90;
         font-weight: bold;
         text-align: center;
     }
-
     .response-wrapper {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 16px; /* Increased gap for clarity */
+        gap: 16px;
         width: 100%;
         max-width: 500px;
     }
-
-    /* General option styles for text buttons */
     .response-option {
-        background-color: #E8F0F7; /* Light pastel blue */
+        background-color: #E8F0F7;
         color: #2A4F75;
         font-size: 1.1rem;
         padding: 10px 20px;
@@ -58,35 +52,27 @@
         transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
         text-align: center;
         display: inline-block;
-        width: calc(45% - 8px); /* Approx 2 per row, with gap */
+        width: calc(45% - 8px);
         border: 2px solid #A3BDD1;
     }
-
     .response-option:hover {
         background-color: #d0e1f0;
         border-color: #5785A7;
     }
-
-    input[type="radio"],
-    input[type="checkbox"] {
+    input[type="radio"], input[type="checkbox"] {
         display: none;
     }
-
-    /* Selected text option style */
     input[type="radio"]:checked + .response-option,
     input[type="checkbox"]:checked + .response-option {
         border: 3px solid #2A4F75;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
         background-color: #c0d9ec;
     }
-
-    /* Image button wrappers */
     .image-option {
-        width: calc(30% - 10px); /* Adjust spacing for images */
+        width: calc(30% - 10px);
         margin: 5px;
         display: inline-block;
     }
-
     .image-content {
         border: 2px solid #A3BDD1;
         border-radius: 8px;
@@ -95,30 +81,25 @@
         transition: border 0.3s, box-shadow 0.3s;
         text-align: center;
     }
-
     .image-content:hover {
         border: 2px solid #3A6A90;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.3);
     }
-
     .image-option input[type="radio"]:checked + .image-content {
         border: 3px solid #2A4F75;
         box-shadow: 0 0 8px rgba(42, 79, 117, 0.4);
     }
-
     .image-content img {
         width: 80px;
         height: auto;
         margin-bottom: 5px;
     }
-
     .image-content div {
         color: #2A4F75;
         font-weight: bold;
         font-family: 'Tenor Sans', sans-serif;
         font-size: 0.9rem;
     }
-
     button {
         background-color: #2A4F75;
         color: white;
@@ -131,29 +112,20 @@
         transition: background-color 0.3s;
         display: block;
     }
-
     button:hover {
         background-color: #3A6A90;
     }
-
     @media (max-width: 600px) {
-        .response-option {
-            width: 100%; /* Stack on smaller screens */
-        }
-        .image-option {
-            width: 45%; /* 2 per row on mobile */
-        }
+        .response-option { width: 100%; }
+        .image-option { width: 45%; }
     }
 </style>
-
-
 
 <div class="quiz-container">
     <h1>Find Your Curly Hair Routine</h1>
     <form method="post">
         {% csrf_token %}
 
-        <!-- Maintenance -->
         <div class="question-block">
             <span class="question-text">How much maintenance do you want to do with your hair?</span>
             <div class="response-wrapper">
@@ -166,7 +138,6 @@
             </div>
         </div>
 
-        <!-- Budget -->
         <div class="question-block">
             <span class="question-text">What's your budget? (per product)</span>
             <div class="response-wrapper">
@@ -179,7 +150,6 @@
             </div>
         </div>
 
-        <!-- Curl Type with Images -->
         <div class="question-block">
             <span class="question-text">What’s your curl type?</span>
             <div class="response-wrapper">
@@ -197,7 +167,6 @@
             </div>
         </div>
 
-        <!-- Vegan Preference -->
         <div class="question-block">
             <span class="question-text">Do you prefer vegan products?</span>
             <div class="response-wrapper">
@@ -210,20 +179,6 @@
             </div>
         </div>
 
-        <!-- Hair Length -->
-        <div class="question-block">
-            <span class="question-text">How long is your hair?</span>
-            <div class="response-wrapper">
-                {% for choice in form.hair_length.field.choices %}
-                    <label>
-                        <input type="radio" name="hair_length" value="{{ choice.0 }}" required>
-                        <span class="response-option">{{ choice.1 }}</span>
-                    </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Scalp Condition -->
         <div class="question-block">
             <span class="question-text">What’s your scalp condition?</span>
             <div class="response-wrapper">
@@ -236,26 +191,24 @@
             </div>
         </div>
 
-        <!-- Oiliness -->
-        <div class="question-block">
-            <span class="question-text">How soon does your hair get oily after washing?</span>
-            <div class="response-wrapper">
-                {% for choice in form.oiliness.field.choices %}
-                    <label>
-                        <input type="radio" name="oiliness" value="{{ choice.0 }}" required>
-                        <span class="response-option">{{ choice.1 }}</span>
-                    </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Hold Level -->
         <div class="question-block">
             <span class="question-text">What level of hold do you prefer for styling products?</span>
             <div class="response-wrapper">
                 {% for choice in form.hold.field.choices %}
                     <label>
                         <input type="radio" name="hold" value="{{ choice.0 }}" required>
+                        <span class="response-option">{{ choice.1 }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">Has your hair been chemically or color treated recently?</span>
+            <div class="response-wrapper">
+                {% for choice in form.color_treated.field.choices %}
+                    <label>
+                        <input type="radio" name="color_treated" value="{{ choice.0 }}" required>
                         <span class="response-option">{{ choice.1 }}</span>
                     </label>
                 {% endfor %}
