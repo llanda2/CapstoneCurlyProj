@@ -216,8 +216,9 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             body: formData,
             headers: {
-                "X-CSRFToken": window.CSRF_TOKEN  // This should be defined in your template
-            }
+    "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+    "X-Requested-With": "XMLHttpRequest"  // Sometimes needed for Django
+}
         })
         .then(response => {
             if (!response.ok) {
