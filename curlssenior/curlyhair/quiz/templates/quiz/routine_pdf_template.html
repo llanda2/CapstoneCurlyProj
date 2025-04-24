@@ -147,21 +147,16 @@
 
     <h2 class="section-title">Your Routine Steps</h2>
 
-{% for step, product in routine_data.items %}
-<div class="routine-step">
-    <div class="step-header">
-        <div class="step-number">{{ forloop.counter }}</div>
-        <div class="step-title">{{ step }}</div>
-    </div>
-
-    <div class="product-title">Recommended Product:</div>
-    <div class="selected-product">
-        <div class="product-name">
+<div style="padding: 10px 20px;">
+    <ol style="padding-left: 20px;">
+        {% for step, product in routine_data.items %}
+        <li style="margin-bottom: 12px;">
+            <strong>{{ step }}:</strong>
             {{ product|default:"N/A" }}
-        </div>
-    </div>
+        </li>
+        {% endfor %}
+    </ol>
 </div>
-{% endfor %}
 
 
     <div class="tips-section">
