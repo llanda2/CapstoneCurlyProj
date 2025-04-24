@@ -149,14 +149,21 @@
 
 <div style="padding: 10px 20px;">
     <ol style="padding-left: 20px;">
-        {% for step, product in routine_data.items %}
+        {% for step in routine_data.routine_steps %}
         <li style="margin-bottom: 12px;">
             <strong>{{ step }}:</strong>
-            {{ product|default:"N/A" }}
+            {% with routine_data.selected_products|get_item:step as product %}
+                {% if product %}
+                    <span><strong>{{ product.brand }}</strong> — {{ product.name }}</span>
+                {% else %}
+                    <em>No product selected</em>
+                {% endif %}
+            {% endwith %}
         </li>
         {% endfor %}
     </ol>
 </div>
+
 
 
     <div class="tips-section">
